@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.45.1">
+<file name="C:\Users\louid\Local Documents\Programming projects\Formulang\formulang\src\main\java\com\lorddomino\App.java">
+</file>
+<file name="C:\Users\louid\Local Documents\Programming projects\Formulang\formulang\src\main\java\com\lorddomino\fle\blueprints\AbstractBlueprintElement.java">
+<error line="30" column="5" severity="error" message="&apos;/*&apos; has more than 1 empty lines before." source="com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck"/>
+<error line="64" column="5" severity="error" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck"/>
+<error line="105" column="9" severity="error" message="Conditional logic can be removed." source="com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheck"/>
+<error line="117" column="1" severity="error" message="Top-level class FlePreviewable has to reside in its own source file." source="com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck"/>
+<error line="126" column="5" severity="error" message="Redundant &apos;public&apos; modifier." source="com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck"/>
+</file>
+<file name="C:\Users\louid\Local Documents\Programming projects\Formulang\formulang\src\main\java\com\lorddomino\fle\blueprints\BlueprintElement.java">
+<error line="3" column="1" severity="error" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck"/>
+</file>
+<file name="C:\Users\louid\Local Documents\Programming projects\Formulang\formulang\src\main\java\com\lorddomino\fle\blueprints\ClassElement.java">
+<error line="5" column="1" severity="error" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck"/>
+<error line="11" column="5" severity="error" message="Definition of &apos;equals()&apos; without corresponding definition of &apos;hashCode()&apos;." source="com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck"/>
+</file>
+<file name="C:\Users\louid\Local Documents\Programming projects\Formulang\formulang\src\main\java\com\lorddomino\fle\blueprints\ComponentBlueprint.java">
+<error line="5" column="1" severity="error" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck"/>
+<error line="9" column="5" severity="error" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck"/>
+<error line="21" column="8" severity="error" message="Unused @param tag for &apos;instanceElements&apos;." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="60" column="9" severity="error" message="Conditional logic can be removed." source="com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheck"/>
+</file>
+<file name="C:\Users\louid\Local Documents\Programming projects\Formulang\formulang\src\main\java\com\lorddomino\fle\blueprints\DefaultBlueprintConstructor.java">
+<error line="5" column="1" severity="error" message="Extra separation in import group before &apos;com.lorddomino.fle.componenttypes.AbstractComponent&apos;" source="com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck"/>
+<error line="5" column="1" severity="error" message="Wrong order for &apos;com.lorddomino.fle.componenttypes.AbstractComponent&apos; import." source="com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck"/>
+<error line="7" column="1" severity="error" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck"/>
+<error line="24" column="5" severity="error" message="Redundant &apos;public&apos; modifier." source="com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck"/>
+</file>
+<file name="C:\Users\louid\Local Documents\Programming projects\Formulang\formulang\src\main\java\com\lorddomino\fle\blueprints\InstanceElement.java">
+<error line="5" column="1" severity="error" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck"/>
+<error line="11" column="5" severity="error" message="Definition of &apos;equals()&apos; without corresponding definition of &apos;hashCode()&apos;." source="com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck"/>
+</file>
+<file name="C:\Users\louid\Local Documents\Programming projects\Formulang\formulang\src\main\java\com\lorddomino\fle\componenttypes\AbstractComponent.java">
+<error line="5" column="1" severity="error" message="Extra separation in import group before &apos;com.lorddomino.fle.blueprints.AbstractBlueprintElement&apos;" source="com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck"/>
+<error line="5" column="1" severity="error" message="Wrong order for &apos;com.lorddomino.fle.blueprints.AbstractBlueprintElement&apos; import." source="com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck"/>
+<error line="9" column="1" severity="error" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck"/>
+<error line="27" column="5" severity="error" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck"/>
+<error line="39" severity="error" message="Line is longer than 120 characters (found 123)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="39" column="48" severity="error" message="&apos;+&apos; is not preceded with whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
+<error line="85" column="77" severity="error" message="&apos;blueprint&apos; hides a field." source="com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck"/>
+<error line="112" column="5" severity="error" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck"/>
+<error line="120" column="62" severity="error" message="&apos;formulangTranscript&apos; hides a field." source="com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck"/>
+</file>
+<file name="C:\Users\louid\Local Documents\Programming projects\Formulang\formulang\src\main\java\com\lorddomino\fle\componenttypes\DummyComponent.java">
+<error line="5" column="1" severity="error" message="Extra separation in import group before &apos;com.lorddomino.fle.blueprints.AbstractBlueprintElement&apos;" source="com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck"/>
+<error line="5" column="1" severity="error" message="Wrong order for &apos;com.lorddomino.fle.blueprints.AbstractBlueprintElement&apos; import." source="com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck"/>
+<error line="8" column="1" severity="error" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck"/>
+<error line="34" column="5" severity="error" message="Definition of &apos;equals()&apos; without corresponding definition of &apos;hashCode()&apos;." source="com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck"/>
+</file>
+<file name="C:\Users\louid\Local Documents\Programming projects\Formulang\formulang\src\main\java\com\lorddomino\fle\componenttypes\TranscriptableComponent.java">
+<error line="5" column="1" severity="error" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck"/>
+<error line="15" column="5" severity="error" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck"/>
+<error line="45" column="56" severity="error" message="&apos;ipaTranscript&apos; hides a field." source="com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck"/>
+<error line="47" column="55" severity="error" message="&apos;romanization&apos; hides a field." source="com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck"/>
+</file>
+<file name="C:\Users\louid\Local Documents\Programming projects\Formulang\formulang\src\main\java\com\lorddomino\fle\phonology\Phone.java">
+<error line="6" column="1" severity="error" message="Extra separation in import group before &apos;com.lorddomino.fle.blueprints.AbstractBlueprintElement&apos;" source="com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck"/>
+<error line="6" column="1" severity="error" message="Wrong order for &apos;com.lorddomino.fle.blueprints.AbstractBlueprintElement&apos; import." source="com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck"/>
+<error line="12" column="1" severity="error" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck"/>
+<error line="53" column="5" severity="error" message="Instance variable definition in wrong order." source="com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck"/>
+<error line="60" column="5" severity="error" message="Instance variable definition in wrong order." source="com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck"/>
+<error line="67" column="5" severity="error" message="Constructor definition in wrong order." source="com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck"/>
+<error line="91" column="39" severity="error" message="&apos;isIpaDefault&apos; hides a field." source="com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck"/>
+<error line="142" column="5" severity="error" message="Definition of &apos;equals()&apos; without corresponding definition of &apos;hashCode()&apos;." source="com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck"/>
+</file>
+<file name="C:\Users\louid\Local Documents\Programming projects\Formulang\formulang\src\main\java\com\lorddomino\fle\utils\Preprocessable.java">
+<error line="3" column="1" severity="error" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck"/>
+<error line="14" column="5" severity="error" message="Redundant &apos;public&apos; modifier." source="com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck"/>
+<error line="16" column="6" severity="error" message="&apos;;&apos; should be separated from previous line." source="com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck"/>
+<error line="31" column="5" severity="error" message="Redundant &apos;public&apos; modifier." source="com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck"/>
+</file>
+<file name="C:\Users\louid\Local Documents\Programming projects\Formulang\formulang\src\test\java\com\lorddomino\AppTest.java">
+<error line="5" column="1" severity="error" message="Extra separation in import group before &apos;com.lorddomino.fle.blueprints.ClassElement&apos;" source="com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck"/>
+<error line="5" column="1" severity="error" message="Wrong order for &apos;com.lorddomino.fle.blueprints.ClassElement&apos; import." source="com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck"/>
+</file>
+</checkstyle>
