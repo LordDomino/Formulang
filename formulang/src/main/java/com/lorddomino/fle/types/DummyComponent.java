@@ -17,21 +17,6 @@ public class DummyComponent extends AbstractComponent<AbstractComponent<?>> {
     }
 
     @Override
-    public String processOutputString(String output) {
-        return output;
-    }
-
-    @Override
-    public String processFormulangTranscript(String formulangTranscript) {
-        return "$";
-    }
-
-    @Override
-    public ComponentBlueprint<AbstractComponent<?>> processBlueprint(ComponentBlueprint<AbstractComponent<?>> bp) {
-        return bp;
-    }
-
-    @Override
     public boolean equals(Object obj) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'equals'");

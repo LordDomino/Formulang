@@ -1,6 +1,8 @@
 package com.lorddomino.fle.phonology.articulatoryproperties;
 
-public enum Voicing {
+import com.lorddomino.fle.phonology.ConsonantalArticulatoryProperty;
+
+public enum Voicing implements ConsonantalArticulatoryProperty {
     VOICED,
     VOICELESS
 }

@@ -2,7 +2,7 @@ package com.lorddomino;
 
 import org.junit.jupiter.api.Test;
 
-import com.lorddomino.fle.phonology.Phone;
+import com.lorddomino.fle.phonology.ConsonantPhone;
 import com.lorddomino.fle.phonology.Phoneme;
 
 public class TypesTest {
@@ -14,7 +14,7 @@ public class TypesTest {
      */
     @Test
     void nullObjPropertiesConstruction() {
-        Phoneme phoneme = new Phoneme(new Phone("a", false, null), null);
+        Phoneme phoneme = new Phoneme(new ConsonantPhone("a", false, null), null);
 
         System.out.println(phoneme.getBaseSymbol());
         System.out.println(phoneme.getIpaTranscript());

@@ -8,7 +8,8 @@ import com.lorddomino.fle.blueprints.BlueprintElement;
 import com.lorddomino.fle.blueprints.ClassElement;
 import com.lorddomino.fle.blueprints.ComponentBlueprint;
 import com.lorddomino.fle.blueprints.InstanceElement;
-import com.lorddomino.fle.phonology.ArticulatoryProperty;
+import com.lorddomino.fle.phonology.ConsonantPhone;
+import com.lorddomino.fle.phonology.ConsonantalArticulatoryProperty;
 import com.lorddomino.fle.phonology.Phone;
 import com.lorddomino.fle.types.DummyComponent;
 
@@ -22,7 +23,7 @@ class PhonologyTest {
     @Test
     void testPhoneInstance() {
         // Phone component object demonstration
-        Phone phone = new Phone("A", false, new HashSet<ArticulatoryProperty>());
+        Phone phone = new ConsonantPhone("A", false, new HashSet<ConsonantalArticulatoryProperty>());
 
         // Phone fields and getter methods demonstration
         System.out.println("Output string: " + phone.getOutputString());
@@ -48,7 +49,7 @@ class PhonologyTest {
      */
     @Test
     void testPhoneBlueprintReferences() {
-        Phone phone = new Phone("B", false, new HashSet<ArticulatoryProperty>());
+        Phone phone = new ConsonantPhone("B", false, new HashSet<ConsonantalArticulatoryProperty>());
 
         System.out.println("Phone's blueprint:             " + phone.getBlueprint());
         System.out.println("Phone's BP instance reference: " + phone.getBlueprint().getInstanceReference());
@@ -64,10 +65,10 @@ class PhonologyTest {
      */
     @Test
     void testInstanceElementEquality() {
-        Phone phone1 = new Phone("A", false, new HashSet<ArticulatoryProperty>());
-        Phone phone2 = new Phone("B", false, new HashSet<ArticulatoryProperty>());
-        Phone phone3 = new Phone("C", false, new HashSet<ArticulatoryProperty>());
-        Phone phone4 = new Phone("A", false, new HashSet<ArticulatoryProperty>());
+        Phone phone1 = new ConsonantPhone("A", false, new HashSet<ConsonantalArticulatoryProperty>());
+        Phone phone2 = new ConsonantPhone("B", false, new HashSet<ConsonantalArticulatoryProperty>());
+        Phone phone3 = new ConsonantPhone("C", false, new HashSet<ConsonantalArticulatoryProperty>());
+        Phone phone4 = new ConsonantPhone("A", false, new HashSet<ConsonantalArticulatoryProperty>());
 
         InstanceElement<Phone> ie1 = new InstanceElement<Phone>(phone1);
         InstanceElement<Phone> ie2 = new InstanceElement<Phone>(phone2);
@@ -85,7 +86,7 @@ class PhonologyTest {
      */
     @Test
     void testClassElementEquality() {
-        Phone phone = new Phone("A", false, new HashSet<ArticulatoryProperty>());
+        Phone phone = new ConsonantPhone("A", false, new HashSet<ConsonantalArticulatoryProperty>());
         ClassElement ce1 = new ClassElement(Phone.class);
         ClassElement ce2 = new ClassElement(phone.getClass());
         ClassElement ce3 = new ClassElement(DummyComponent.class);
@@ -102,7 +103,7 @@ class PhonologyTest {
      */
     @Test
     void testCbpReferences() {
-        InstanceElement<Phone> ie = new InstanceElement<>(new Phone("A", false, new HashSet<ArticulatoryProperty>()));
+        InstanceElement<Phone> ie = new InstanceElement<>(new ConsonantPhone("A", false, new HashSet<ConsonantalArticulatoryProperty>()));
         ClassElement ce = new ClassElement(DummyComponent.class);
         BlueprintElement<ComponentBlueprint<?>> bp = new BlueprintElement<ComponentBlueprint<?>>(new ComponentBlueprint<>(ce));
 

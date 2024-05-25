@@ -20,30 +20,26 @@ package com.lorddomino.fle.blueprints;
  */
 public abstract class AbstractBlueprintElement implements FlePreviewable {
 
+  /**
+   * The instance reference object of this component.
+   */
   private AbstractBlueprintElement instanceReference;
-  private Class<? extends AbstractBlueprintElement> classReference;
-  private boolean isReferencingSubBlueprint;
-  private boolean isReferencingInstance;
 
-  public AbstractBlueprintElement(AbstractBlueprintElement object, Class<? extends AbstractBlueprintElement> classRef,
-      boolean isReferencingInstance) {
-    this.instanceReference = object;
-    this.classReference = classRef;
-    this.isReferencingInstance = isReferencingInstance;
-    if (isObjNull(object)) {
-      this.isReferencingInstance = false;
-      this.isReferencingSubBlueprint = false;
-    } else {
-      if (isObjCbp(object)) {
-        this.isReferencingSubBlueprint = true;
-      } else {
-        this.isReferencingSubBlueprint = false;
-      }
-    }
-    if (isClsNull(classRef)) {
-      this.classReference = this.getClass();
-    }
-  }
+  /**
+   * The class reference object of this component.
+   */
+  private Class<? extends AbstractBlueprintElement> classReference;
+
+  /**
+   * Whether or not this component is referencing a component blueprint.
+   */
+  private boolean isReferencingSubBlueprint;
+
+  /**
+   * Boolean flag for whether or not this component is referencing an instance,
+   * that is the instance reference.
+   */
+  private boolean isReferencingInstance;
 
   /**
    * Creates an {@code AbstractBlueprintElement} object that assigns itself as
@@ -60,17 +56,60 @@ public abstract class AbstractBlueprintElement implements FlePreviewable {
   }
 
   /**
+   * Creates an {@code AbstractBlueprintElement} object that assigns
+   * {@code instRef} and {@code classRef} as the instance reference and the
+   * class reference, respectively. A third argument
+   * {@code isReferencingInstance} allows explicit declaration of this object's
+   * {@code isReferencingInstance} property to {@code false}, even if an
+   * instance reference is provided. This forces the object to one of two
+   * conditions based on the boolean provided in the third argument:
+   * <ul>
+   *  <li><b>If {@code isReferencingInstance} is true</b>, then the object will
+   *  always set its default reference to the instance reference (if not null).
+   *  </li>
+   *  <li><b>If {@code isReferencingInstance} is false</b>, then the object will
+   *  always set its default reference to the class reference, regardless of the
+   *  provided instance reference in the object construction.
+   *  </li>
+   * </ul>
+   * This behavior also affects the {@code getDefaultReference()} method.
+   * @param instRef the instance reference of this object
+   * @param clsRef the class reference of this object
+   * @param isReferencingInstance whether or not this object should refer to the
+   * instance reference as its default reference
+   */
+  public AbstractBlueprintElement(AbstractBlueprintElement instRef, Class<? extends AbstractBlueprintElement> clsRef,
+      boolean isReferencingInstance) {
+    this.instanceReference = instRef;
+    this.classReference = clsRef;
+    this.isReferencingInstance = isReferencingInstance;
+    if (isObjNull(instRef)) {
+      this.isReferencingInstance = false;
+      this.isReferencingSubBlueprint = false;
+    } else {
+      if (isObjCbp(instRef)) {
+        this.isReferencingSubBlueprint = true;
+      } else {
+        this.isReferencingSubBlueprint = false;
+      }
+    }
+    if (isClsNull(clsRef)) {
+      this.classReference = this.getClass();
+    }
+  }
+
+  /**
    * Creates an {@code AbstractBlueprintElement} object that accepts the
-   * specified {@code object} as its instance reference and {@code object}'s
+   * specified {@code instRef} as its instance reference and {@code object}'s
    * class as the class reference.
-   * @param object an {@code AbstractBlueprintElement} instance for reference
+   * @param instRef an {@code AbstractBlueprintElement} instance for reference
    * @deprecated
    */
   @Deprecated
-  public AbstractBlueprintElement(AbstractBlueprintElement object) {
-    this.instanceReference = object;
-    this.classReference = object.getClass();
-    this.isReferencingSubBlueprint = isObjCbp(object);
+  public AbstractBlueprintElement(AbstractBlueprintElement instRef) {
+    this.instanceReference = instRef;
+    this.classReference = instRef.getClass();
+    this.isReferencingSubBlueprint = isObjCbp(instRef);
     if (this.isReferencingSubBlueprint) {
       this.isReferencingInstance = false;
     } else {
@@ -86,6 +125,14 @@ public abstract class AbstractBlueprintElement implements FlePreviewable {
     this.classReference = classRef;
     this.isReferencingSubBlueprint = false;
     this.isReferencingInstance = false;
+  }
+
+  public Object getDefaultReference() {
+    if (isReferencingInstance()) {
+      return getInstanceReference();
+    } else {
+      return getClassReference();
+    }
   }
 
   /**

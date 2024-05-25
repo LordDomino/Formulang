@@ -106,19 +106,4 @@ public abstract class AbstractComponent<E extends AbstractComponent<?>> extends 
     this.blueprint = initializeBlueprint(blueprint);
   }
 
-  /**
-   *
-   */
-  public void processProperties() {
-    setOutputString(processOutputString(outputString));
-    setFormulangTranscript(processFormulangTranscript(formulangTranscript));
-    setBlueprint(processBlueprint(blueprint));
-  }
-
-  public abstract String processOutputString(String output);
-
-  public abstract String processFormulangTranscript(String formulangTranscript);
-
-  public abstract ComponentBlueprint<E> processBlueprint(ComponentBlueprint<E> bp);
-
 }

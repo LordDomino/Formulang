@@ -10,79 +10,128 @@ import com.lorddomino.fle.types.TranscriptableComponent;
 
 public class Phoneme extends TranscriptableComponent<Phoneme> {
 
-    private Phone baseAllophone;
-    private String baseSymbol;
-    private ArrayList<Phone> allophones;
+  private static final ArrayList<Phoneme> IPA_DEFAULTS = new ArrayList<>();
 
-    public Phoneme(Phone baseAllophone, String romanization) {
-        super(baseAllophone.getOutputString(), null, null);
-        this.baseAllophone = baseAllophone;
-        this.baseSymbol = baseAllophone.getSymbol();
-        this.allophones = new ArrayList<Phone>();
-        this.allophones.add(baseAllophone);
-        processProperties();
-    }
+  public static ArrayList<Phoneme> getIpaDefaults() {
+    return IPA_DEFAULTS;
+  }
 
-    @Override
-    public ArrayList<AbstractBlueprintElement> defineDefaultBlueprintElements() {
-        ArrayList<AbstractBlueprintElement> e = new ArrayList<>();
-        e.add(new ClassElement(Phoneme.class));
-        return e;
-    }
+  public static void addToIpaDefaults(Phoneme pm) {
+    IPA_DEFAULTS.add(pm);
+  }
 
-    @Override
-    public String processIpaTranscript(String ipaTranscript) {
-        if (ipaTranscript == null) {
-            return "/" + this.baseSymbol + "/";
-        } else {
-            return "/" + ipaTranscript + "/";
-        }
-    }
+  public static void removeFromIpaDefaults(Phoneme pm) {
+    IPA_DEFAULTS.remove(pm);
+  }
 
-    @Override
-    public String processRomanization(String romanization) {
-        return romanization;
-    }
+  private Phone baseAllophone;
+  private String baseSymbol;
+  private ArrayList<Phone> allophones = new ArrayList<>();
 
-    @Override
-    public boolean equals(Object obj) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'equals'");
-    }
+  public Phoneme(Phone baseAllophone, String romanization) {
+    super(baseAllophone.getOutputString(), null, null);
+    this.baseAllophone = baseAllophone;
+    this.baseSymbol = baseAllophone.getSymbol();
+    this.allophones.add(baseAllophone);
+    processProperties();
+  }
 
-    @Override
-    public String processOutputString(String output) {
-        if (output == null) {
-            return this.baseSymbol;
-        } else {
-            return output;
-        }
-    }
+  @Override
+  public ArrayList<AbstractBlueprintElement> defineDefaultBlueprintElements() {
+    ArrayList<AbstractBlueprintElement> e = new ArrayList<>();
+    e.add(new ClassElement(Phoneme.class));
+    return e;
+  }
 
-    @Override
-    public String processFormulangTranscript(String formulangTranscript) {
-        if (formulangTranscript == null) {
-            return "/" + this.baseSymbol + "/";
-        } else {
-            return formulangTranscript;
-        }
+  @Override
+  public String processIpaTranscript(String ipaTranscript) {
+    if (ipaTranscript == null) {
+      return "/" + this.getBaseSymbol() + "/";
+    } else {
+      return "/" + ipaTranscript + "/";
     }
+  }
 
-    @Override
-    public ComponentBlueprint<Phoneme> processBlueprint(ComponentBlueprint<Phoneme> bp) {
-        return new ComponentBlueprint<>(new InstanceElement<Phoneme>(this));
-    }
+  @Override
+  public String processRomanization(String romanization) {
+    return romanization;
+  }
 
-    public Phone getBaseAllophone() {
-        return baseAllophone;
-    }
+  @Override
+  public boolean equals(Object obj) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'equals'");
 
-    public String getBaseSymbol() {
-        return baseSymbol;
-    }
+    /**
+     * Method requirements for equality.
+     *
+     * Phoneme#equals() should be able to facilitate equality among same
+     * phonemes that satisfy the following conditions:
+     * a) Two identical phonemes which both contain the same identical values in
+     *  their fields.
+     * b) A phoneme compared against one of its allophones.
+     *
+     */
+  }
 
-    @Override
-    public String getFlePreview() {
-        return "<Phoneme " + this.getIpaTranscript() + ">";
+  @Override
+  public String processFormulangTranscript(String formulangTranscript) {
+    if (formulangTranscript == null) {
+      return "/" + this.getBaseSymbol() + "/";
+    } else {
+      return formulangTranscript;
     }
+  }
+
+  @Override
+  public ComponentBlueprint<Phoneme> processBlueprint(ComponentBlueprint<Phoneme> bp) {
+    return new ComponentBlueprint<>(new InstanceElement<Phoneme>(this));
+  }
+
+  public Phone getBaseAllophone() {
+    return baseAllophone;
+  }
+
+  public String getBaseSymbol() {
+    return baseSymbol;
+  }
+
+  @Override
+  public String getFlePreview() {
+    return "<Phoneme " + this.getIpaTranscript() + ">";
+  }
+
+  /**
+   * Returns {@code true} if this phoneme's base allophone is a consonant,
+   * otherwise returns {@code false}.
+   * @return
+   */
+  public boolean isConsonant() {
+    if (getBaseAllophone() instanceof ConsonantPhone) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  /**
+   * Returns {@code true} if this phoneme's base allophone is a vowel, otherwise
+   * returns {@code false}.
+   * @return
+   */
+  public boolean isVowel() {
+    if (getBaseAllophone() instanceof VowelPhone) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public boolean containsProperty(ArticulatoryProperty prop) {
+    if (getBaseAllophone().containsProperty(prop)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
