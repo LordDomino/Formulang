@@ -10,7 +10,9 @@ public interface Preprocessable<T> {
      * @return the preprocessed object based on the object {@code input}
      * @implSpec The default implementation of this method returns the
      * given object {@code input}.
+     * @deprecated
      */
+    @Deprecated
     public default T preprocess(T input) {
         return input;
     };
@@ -27,7 +29,9 @@ public interface Preprocessable<T> {
      * {@code input1} and {@code input2}
      * @implSpec The default implementation of this method returns the
      * first object {@code input1}.
+     * @deprecated
      */
+    @Deprecated
     public default T preprocess(T input1, T input2) {
         return input1;
     }

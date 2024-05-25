@@ -127,6 +127,12 @@ public abstract class AbstractBlueprintElement implements FlePreviewable {
     this.isReferencingInstance = false;
   }
 
+  /**
+   * Returns the default reference that this blueprint element uses. This method
+   * returns either the instance reference if {@code isReferencingInstance()} is
+   * {@code true} or the class reference if the said condition fails.
+   * @return the reference object
+   */
   public Object getDefaultReference() {
     if (isReferencingInstance()) {
       return getInstanceReference();
