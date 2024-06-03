@@ -3,7 +3,7 @@ package com.lorddomino.fle.ipa;
 import java.util.HashSet;
 
 import com.lorddomino.fle.phonology.ConsonantPhone;
-import com.lorddomino.fle.phonology.ConsonantalArticulatoryProperty;
+import com.lorddomino.fle.phonology.articulatoryproperties.ConsonantalArticulatoryProperty;
 import com.lorddomino.fle.phonology.articulatoryproperties.MannerOfArticulation;
 import com.lorddomino.fle.phonology.articulatoryproperties.PlaceOfArticulation;
 import com.lorddomino.fle.phonology.articulatoryproperties.Voicing;

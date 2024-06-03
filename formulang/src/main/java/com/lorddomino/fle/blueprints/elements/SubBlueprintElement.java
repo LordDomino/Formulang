@@ -1,4 +1,6 @@
-package com.lorddomino.fle.blueprints;
+package com.lorddomino.fle.blueprints.elements;
+
+import com.lorddomino.fle.blueprints.ComponentBlueprint;
 
 /**
  * Class for the {@code BlueprintElement} wrapper class.
@@ -8,7 +10,7 @@ package com.lorddomino.fle.blueprints;
  * finally operating on blueprint comparison and equality.
  * <p>
  * A {@code ComponentBlueprint} object can be wrapped around
- * {@code BlueprintElement} object through the following construction:
+ * {@code BlueprintElement} object through the following initialization:
  * <pre>{@code
  * BlueprintElement bpe = new BlueprintElement(new ComponentBlueprint(...));
  * }</pre>
@@ -16,8 +18,14 @@ package com.lorddomino.fle.blueprints;
  * instances and, thus, calling {@code isReferencingInstance()} always returns
  * {@code true}.
  */
-public class BlueprintElement<E extends ComponentBlueprint<?>> extends AbstractBlueprintElement {
-  public BlueprintElement(E cbp) {
-    super(cbp, cbp.getClassReference(), true);
+public class SubBlueprintElement extends ComponentBlueprintElement<ComponentBlueprint> {
+  public SubBlueprintElement(ComponentBlueprint cbp) {
+    super(cbp);
+  }
+
+  @Override
+  public boolean isCompatible(Object r) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'isCompatible'");
   }
 }

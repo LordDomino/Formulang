@@ -1,4 +1,4 @@
-package com.lorddomino.fle.phonology;
+package com.lorddomino.fle.phonology.articulatoryproperties;
 
 public interface ConsonantalArticulatoryProperty extends ArticulatoryProperty {
 

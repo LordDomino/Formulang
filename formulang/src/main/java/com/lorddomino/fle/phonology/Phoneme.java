@@ -1,11 +1,13 @@
 package com.lorddomino.fle.phonology;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
-import com.lorddomino.fle.blueprints.AbstractBlueprintElement;
-import com.lorddomino.fle.blueprints.ClassElement;
+import com.lorddomino.fle.blueprints.AbstractFormulangReference;
 import com.lorddomino.fle.blueprints.ComponentBlueprint;
-import com.lorddomino.fle.blueprints.InstanceElement;
+import com.lorddomino.fle.blueprints.elements.ClassElement;
+import com.lorddomino.fle.blueprints.elements.InstanceElement;
+import com.lorddomino.fle.phonology.articulatoryproperties.ArticulatoryProperty;
 import com.lorddomino.fle.types.TranscriptableComponent;
 
 public class Phoneme extends TranscriptableComponent<Phoneme> {
@@ -26,7 +28,7 @@ public class Phoneme extends TranscriptableComponent<Phoneme> {
 
   private Phone baseAllophone;
   private String baseSymbol;
-  private ArrayList<Phone> allophones = new ArrayList<>();
+  private HashSet<Phone> allophones = new HashSet<>();
 
   public Phoneme(Phone baseAllophone, String romanization) {
     super(baseAllophone.getOutputString(), null, null);
@@ -37,8 +39,8 @@ public class Phoneme extends TranscriptableComponent<Phoneme> {
   }
 
   @Override
-  public ArrayList<AbstractBlueprintElement> defineDefaultBlueprintElements() {
-    ArrayList<AbstractBlueprintElement> e = new ArrayList<>();
+  public ArrayList<AbstractFormulangReference> defineDefaultBlueprintElements() {
+    ArrayList<AbstractFormulangReference> e = new ArrayList<>();
     e.add(new ClassElement(Phoneme.class));
     return e;
   }
@@ -59,19 +61,29 @@ public class Phoneme extends TranscriptableComponent<Phoneme> {
 
   @Override
   public boolean equals(Object obj) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'equals'");
-
-    /**
-     * Method requirements for equality.
-     *
-     * Phoneme#equals() should be able to facilitate equality among same
-     * phonemes that satisfy the following conditions:
-     * a) Two identical phonemes which both contain the same identical values in
-     *  their fields.
-     * b) A phoneme compared against one of its allophones.
-     *
-     */
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    if (obj instanceof Phoneme) {
+      Phoneme object = (Phoneme) obj;
+      if (this.getBaseSymbol() == object.getBaseSymbol()) {
+        return true;
+      }
+    } else if (obj instanceof Phone) {
+      Phone object = (Phone) obj;
+      for (Phone allophone : this.getAllophones()) {
+        if (object.equals(allophone)) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
   @Override
@@ -84,8 +96,12 @@ public class Phoneme extends TranscriptableComponent<Phoneme> {
   }
 
   @Override
-  public ComponentBlueprint<Phoneme> processBlueprint(ComponentBlueprint<Phoneme> bp) {
-    return new ComponentBlueprint<>(new InstanceElement<Phoneme>(this));
+  public ComponentBlueprint processBlueprint(ComponentBlueprint bp) {
+    return new ComponentBlueprint(new InstanceElement(this));
+  }
+
+  public HashSet<Phone> getAllophones() {
+    return allophones;
   }
 
   public Phone getBaseAllophone() {

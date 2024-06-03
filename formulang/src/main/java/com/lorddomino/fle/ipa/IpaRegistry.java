@@ -38,6 +38,11 @@ public final class IpaRegistry {
     return cl;
   }
 
+  /**
+   * Adds the given phone {@code pn} to the reference of all default IPA phone
+   * objects recognized and utilized by the Formulang Language Engine.
+   * @param pn the phone to add
+   */
   public static final void registerPhone(Phone pn) {
     IpaRegistry.PHONES.add(pn);
   }
@@ -45,5 +50,4 @@ public final class IpaRegistry {
   public static final void unregisterPhone(Phone pn) {
     IpaRegistry.PHONES.remove(pn);
   }
-
 }

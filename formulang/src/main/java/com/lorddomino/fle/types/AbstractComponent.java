@@ -2,12 +2,12 @@ package com.lorddomino.fle.types;
 
 import java.util.Objects;
 
-import com.lorddomino.fle.blueprints.AbstractBlueprintElement;
+import com.lorddomino.fle.blueprints.AbstractFormulangReference;
 import com.lorddomino.fle.blueprints.ComponentBlueprint;
 import com.lorddomino.fle.blueprints.DefaultBlueprintConstructor;
 
-public abstract class AbstractComponent<E extends AbstractComponent<?>> extends AbstractBlueprintElement
-    implements DefaultBlueprintConstructor<E> {
+public abstract class AbstractComponent<E extends AbstractComponent<?>> extends AbstractFormulangReference
+    implements DefaultBlueprintConstructor {
 
   /**
    * The string representation of the object.
@@ -22,9 +22,9 @@ public abstract class AbstractComponent<E extends AbstractComponent<?>> extends 
   /**
    * The attached component blueprint of the object.
    */
-  private ComponentBlueprint<E> blueprint;
+  private ComponentBlueprint blueprint;
 
-  public AbstractComponent(String outputStr, ComponentBlueprint<E> bp, String formulangTrns) {
+  public AbstractComponent(String outputStr, ComponentBlueprint bp, String formulangTrns) {
     this.outputString = outputStr;
     this.blueprint = initializeBlueprint(bp);
     this.formulangTranscript = formulangTrns;
@@ -75,11 +75,11 @@ public abstract class AbstractComponent<E extends AbstractComponent<?>> extends 
    * Returns the default blueprint of this component.
    * @return the default blueprint
    */
-  public ComponentBlueprint<E> getDefaultBlueprint() {
+  public ComponentBlueprint getDefaultBlueprint() {
     return constructDefaultBlueprint();
   }
 
-  private ComponentBlueprint<E> initializeBlueprint(ComponentBlueprint<E> blueprint) {
+  private ComponentBlueprint initializeBlueprint(ComponentBlueprint blueprint) {
     if (blueprint == null) {
       return constructDefaultBlueprint();
     } else {
@@ -91,7 +91,7 @@ public abstract class AbstractComponent<E extends AbstractComponent<?>> extends 
    * Returns the associated component blueprint of this component.
    * @return the component blueprint
    */
-  public ComponentBlueprint<E> getBlueprint() {
+  public ComponentBlueprint getBlueprint() {
     return blueprint;
   }
 
@@ -102,8 +102,16 @@ public abstract class AbstractComponent<E extends AbstractComponent<?>> extends 
    * component's class.
    * @param blueprint the new component blueprint
    */
-  public void setBlueprint(ComponentBlueprint<E> blueprint) {
+  public void setBlueprint(ComponentBlueprint blueprint) {
     this.blueprint = initializeBlueprint(blueprint);
+  }
+
+  @Override
+  public boolean isCompatibleToBlueprint(ComponentBlueprint bp) {
+    if (bp.isSingletonBlueprint() && isCompatible(bp.getFirst())) {
+      return true;
+    }
+    return false;
   }
 
 }

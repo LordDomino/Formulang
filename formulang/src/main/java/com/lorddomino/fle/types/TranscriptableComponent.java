@@ -8,11 +8,11 @@ public abstract class TranscriptableComponent<E extends AbstractComponent<?>> ex
 
   private String romanization;
 
-  public TranscriptableComponent(String outputStr, ComponentBlueprint<E> bp, String formulangTrns) {
+  public TranscriptableComponent(String outputStr, ComponentBlueprint bp, String formulangTrns) {
     super(outputStr, bp, formulangTrns);
   }
 
-  public TranscriptableComponent(String outputStr, String formulangTrns, ComponentBlueprint<E> bp, String ipaTrns,
+  public TranscriptableComponent(String outputStr, String formulangTrns, ComponentBlueprint bp, String ipaTrns,
       String romanization) {
     super(outputStr, bp, formulangTrns);
     this.ipaTranscript = ipaTrns;
@@ -42,7 +42,7 @@ public abstract class TranscriptableComponent<E extends AbstractComponent<?>> ex
     setRomanization(processRomanization(romanization));
   }
 
-  public abstract ComponentBlueprint<E> processBlueprint(ComponentBlueprint<E> bp);
+  public abstract ComponentBlueprint processBlueprint(ComponentBlueprint bp);
 
   public abstract String processFormulangTranscript(String formulangTranscript);
 

@@ -2,39 +2,66 @@ package com.lorddomino.fle.blueprints;
 
 import java.util.ArrayList;
 
-public class ComponentBlueprint<E extends AbstractBlueprintElement> extends AbstractBlueprintElement {
+public class ComponentBlueprint extends AbstractFormulangReference {
 
-  private ArrayList<AbstractBlueprintElement> elements;
+  private ArrayList<AbstractFormulangReference> elements;
 
   /**
-   * Creates a {@code ComponentBlueprint} object containing exactly
-   * one element reference as its recognized sub-components.
+   * Creates a {@code ComponentBlueprint} object containing exactly one element
+   * reference as its recognized sub-components.
    * @param element the element reference
    */
-  public ComponentBlueprint(AbstractBlueprintElement element) {
-    super(element, element.getClassReference(), true);
-    final ArrayList<AbstractBlueprintElement> al = new ArrayList<>();
+  public ComponentBlueprint(AbstractFormulangReference element) {
+    super();
+    final ArrayList<AbstractFormulangReference> al = new ArrayList<>();
     al.add(element);
     this.elements = al;
   }
 
   /**
-   * Creates a {@code ComponentBlueprint} object containing the
-   * provided elements as its recognized sub-components. Its
-   * sub-components must be an instance of the superclass
-   * AbstractComponent.
-   * @param instanceElements the array list of elements
+   * Creates a {@code ComponentBlueprint} object containing the provided
+   * ArrayList of elements as its recognized sub-components.
+   * @param elements the array list of elements
    */
-  public ComponentBlueprint(ArrayList<AbstractBlueprintElement> elements) {
-    super(null, null, false);
+  public ComponentBlueprint(ArrayList<AbstractFormulangReference> elements) {
+    super();
     this.elements = elements;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    if (obj instanceof ComponentBlueprint) {
+      ComponentBlueprint object = (ComponentBlueprint) obj;
+      if (this.size() != object.size()) {
+        return false;
+      } else {
+        ArrayList<AbstractFormulangReference> curList = this.getElements();
+        ArrayList<AbstractFormulangReference> objList = object.getElements();
+        for (int i = 0; i < this.size(); i++) {
+          if (!curList.get(i).equals(objList.get(i))) {
+            return false;
+          }
+        }
+        return true;
+      }
+    }
+    return false;
   }
 
   /**
    * Returns the elements of this component blueprint.
    * @return the elements of this component blueprint.
    */
-  public ArrayList<AbstractBlueprintElement> getElements() {
+  public ArrayList<AbstractFormulangReference> getElements() {
     return elements;
   }
 
@@ -43,31 +70,47 @@ public class ComponentBlueprint<E extends AbstractBlueprintElement> extends Abst
     return "<ComponentBlueprint [elements=" + elements + ">";
   }
 
-  @Override
-  public Class<? extends AbstractBlueprintElement> getClassReference() {
-    if (isSingletonBlueprint()) {
-      return elements.get(0).getClassReference();
-    } else {
-      return super.getClassReference();
+  /**
+   * Returns the element at given index {@code index}.
+   * @param index the index of the element
+   */
+  public AbstractFormulangReference get(int index) throws IndexOutOfBoundsException {
+    AbstractFormulangReference obj;
+    try {
+      obj = getElements().get(index);
+    } catch (IndexOutOfBoundsException e) {
+      throw new IndexOutOfBoundsException("Index " + index + " is out of bounds for this component blueprint");
     }
-  }
-
-  @Override
-  public AbstractBlueprintElement getInstanceReference() {
-    if (isSingletonBlueprint()) {
-      return elements.get(0).getInstanceReference();
-    } else {
-      return super.getInstanceReference();
-    }
+    return obj;
   }
 
   /**
-   * Returns true if this {@code ComponentBlueprint} object contains
-   * exactly one element reference as its sub-component.
-   * @return whether or not this object contains exactly one element
-   * reference
+   * Returns the first element of this component blueprint.
    */
-  private boolean isSingletonBlueprint() {
+  public AbstractFormulangReference getFirst() {
+    return getElements().get(0);
+  }
+
+  /**
+   * Returns the last element of this component blueprint.
+   */
+  public AbstractFormulangReference getLast() {
+    return getElements().get(size()-1);
+  }
+
+  /**
+   * Returns the number of elements this component blueprint has.
+   */
+  public int size() {
+    return getElements().size();
+  }
+
+  /**
+   * Returns true if this {@code ComponentBlueprint} object contains exactly one
+   * element reference as its sub-component.
+   * @return whether or not this object contains exactly one element reference
+   */
+  public boolean isSingletonBlueprint() {
     if (elements.size() == 1) {
       return true;
     } else {
@@ -75,4 +118,9 @@ public class ComponentBlueprint<E extends AbstractBlueprintElement> extends Abst
     }
   }
 
+  @Override
+  public boolean isCompatibleToBlueprint(ComponentBlueprint bp) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'isCompatibleToBlueprint'");
+  }
 }

@@ -5,11 +5,12 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import com.lorddomino.fle.blueprints.AbstractBlueprintElement;
-import com.lorddomino.fle.blueprints.ClassElement;
+import com.lorddomino.fle.blueprints.AbstractFormulangReference;
 import com.lorddomino.fle.blueprints.ComponentBlueprint;
-import com.lorddomino.fle.blueprints.InstanceElement;
+import com.lorddomino.fle.blueprints.elements.ClassElement;
+import com.lorddomino.fle.blueprints.elements.InstanceElement;
 import com.lorddomino.fle.ipa.IpaRegistry;
+import com.lorddomino.fle.phonology.articulatoryproperties.ArticulatoryProperty;
 import com.lorddomino.fle.types.TranscriptableComponent;
 
 public abstract class Phone extends TranscriptableComponent<Phone> {
@@ -139,8 +140,8 @@ public abstract class Phone extends TranscriptableComponent<Phone> {
   }
 
   @Override
-  public ComponentBlueprint<Phone> processBlueprint(ComponentBlueprint<Phone> bp) {
-    return new ComponentBlueprint<Phone>(new InstanceElement<Phone>(this));
+  public ComponentBlueprint processBlueprint(ComponentBlueprint bp) {
+    return new ComponentBlueprint(new InstanceElement(this));
   }
 
   @Override
@@ -149,8 +150,8 @@ public abstract class Phone extends TranscriptableComponent<Phone> {
   }
 
   @Override
-  public ArrayList<AbstractBlueprintElement> defineDefaultBlueprintElements() {
-    ArrayList<AbstractBlueprintElement> e = new ArrayList<>();
+  public ArrayList<AbstractFormulangReference> defineDefaultBlueprintElements() {
+    ArrayList<AbstractFormulangReference> e = new ArrayList<>();
     e.add(new ClassElement(Phone.class));
     return e;
   }
@@ -182,5 +183,4 @@ public abstract class Phone extends TranscriptableComponent<Phone> {
     }
     return false;
   }
-
 }
