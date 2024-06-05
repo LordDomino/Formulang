@@ -2,11 +2,15 @@ package com.lorddomino.fle.types;
 
 import com.lorddomino.fle.blueprints.ComponentBlueprint;
 
-public abstract class TranscriptableComponent<E extends AbstractComponent<?>> extends AbstractComponent<E> {
+public abstract class TranscriptableComponent extends AbstractComponent {
 
   private String ipaTranscript;
 
   private String romanization;
+
+  public TranscriptableComponent(String outputStr) {
+    super(outputStr, null, null);
+  }
 
   public TranscriptableComponent(String outputStr, ComponentBlueprint bp, String formulangTrns) {
     super(outputStr, bp, formulangTrns);

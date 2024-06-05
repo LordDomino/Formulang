@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import com.lorddomino.fle.blueprints.AbstractFormulangReference;
 import com.lorddomino.fle.blueprints.ComponentBlueprint;
 
-public class DummyComponent extends AbstractComponent<AbstractComponent<?>> {
+public class DummyComponent extends AbstractComponent {
 
-    public DummyComponent(ComponentBlueprint repBp) {
-        super("", repBp, "$");
-    }
+  public DummyComponent(ComponentBlueprint repBp) {
+    super("", repBp, "$");
+  }
 
   @Override
   public ArrayList<AbstractFormulangReference> defineDefaultBlueprintElements() {
@@ -17,7 +17,6 @@ public class DummyComponent extends AbstractComponent<AbstractComponent<?>> {
   }
 
   @Override
-  @SuppressWarnings("unchecked")
   public boolean equals(Object obj) {
     if (this == obj) {
       return true;
@@ -29,7 +28,7 @@ public class DummyComponent extends AbstractComponent<AbstractComponent<?>> {
       return false;
     }
     if (obj instanceof AbstractComponent) {
-      AbstractComponent<AbstractComponent<?>> object = (AbstractComponent<AbstractComponent<?>>) obj;
+      AbstractComponent object = (AbstractComponent) obj;
       if (this.getBlueprint().equals(object.getBlueprint())) {
         return true;
       }

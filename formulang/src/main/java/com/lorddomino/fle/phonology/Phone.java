@@ -13,7 +13,7 @@ import com.lorddomino.fle.ipa.IpaRegistry;
 import com.lorddomino.fle.phonology.articulatoryproperties.ArticulatoryProperty;
 import com.lorddomino.fle.types.TranscriptableComponent;
 
-public abstract class Phone extends TranscriptableComponent<Phone> {
+public abstract class Phone extends TranscriptableComponent {
 
   /**
    * Returns an ArrayList of the default IPA phone objects recognized and

@@ -6,11 +6,12 @@ import org.junit.jupiter.api.Test;
 
 import com.lorddomino.fle.blueprints.ComponentBlueprint;
 import com.lorddomino.fle.blueprints.elements.ClassElement;
-import com.lorddomino.fle.blueprints.elements.ComponentBlueprintElement;
+import static com.lorddomino.fle.ipa.IpaConsonantPhones.*;
 import com.lorddomino.fle.phonology.ConsonantPhone;
 import com.lorddomino.fle.phonology.Phone;
 import com.lorddomino.fle.phonology.Phoneme;
 import com.lorddomino.fle.types.DummyComponent;
+import com.lorddomino.fle.types.Structure;
 
 public class TypesTest {
 
@@ -48,7 +49,14 @@ public class TypesTest {
 
   @Test
   void instanceSubBpEquality() {
-    ComponentBlueprint cbp = new ComponentBlueprint(new ComponentBlueprintElement<>(Phone.class));
+    ComponentBlueprint cbp = new ComponentBlueprint(new ClassElement(Phone.class));
     cbp.getLast();
+  }
+
+  @Test
+  void structureTest() {
+    Structure st = new Structure(VOICED_BILABIAL_PLOSIVE, VOICELESS_BILABIAL_PLOSIVE);
+
+    System.out.println(st.getBlueprint());
   }
 }

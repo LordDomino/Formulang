@@ -10,7 +10,7 @@ import com.lorddomino.fle.blueprints.elements.InstanceElement;
 import com.lorddomino.fle.phonology.articulatoryproperties.ArticulatoryProperty;
 import com.lorddomino.fle.types.TranscriptableComponent;
 
-public class Phoneme extends TranscriptableComponent<Phoneme> {
+public class Phoneme extends TranscriptableComponent {
 
   private static final ArrayList<Phoneme> IPA_DEFAULTS = new ArrayList<>();
 

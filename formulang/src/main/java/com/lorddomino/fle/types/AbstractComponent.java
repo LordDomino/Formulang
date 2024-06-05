@@ -6,7 +6,7 @@ import com.lorddomino.fle.blueprints.AbstractFormulangReference;
 import com.lorddomino.fle.blueprints.ComponentBlueprint;
 import com.lorddomino.fle.blueprints.DefaultBlueprintConstructor;
 
-public abstract class AbstractComponent<E extends AbstractComponent<?>> extends AbstractFormulangReference
+public abstract class AbstractComponent extends AbstractFormulangReference
     implements DefaultBlueprintConstructor {
 
   /**
@@ -107,8 +107,8 @@ public abstract class AbstractComponent<E extends AbstractComponent<?>> extends 
   }
 
   @Override
-  public boolean isCompatibleToBlueprint(ComponentBlueprint bp) {
-    if (bp.isSingletonBlueprint() && isCompatible(bp.getFirst())) {
+  public boolean isCompliantToBlueprint(ComponentBlueprint bp) {
+    if (bp.isSingletonBlueprint() && isCompliant(bp.getFirst())) {
       return true;
     }
     return false;

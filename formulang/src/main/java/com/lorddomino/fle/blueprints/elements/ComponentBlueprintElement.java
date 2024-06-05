@@ -3,7 +3,7 @@ package com.lorddomino.fle.blueprints.elements;
 import com.lorddomino.fle.blueprints.AbstractFormulangReference;
 import com.lorddomino.fle.blueprints.ComponentBlueprint;
 
-public class ComponentBlueprintElement<T> extends AbstractFormulangReference {
+public abstract class ComponentBlueprintElement<T> extends AbstractFormulangReference {
 
   private T defaultReference;
 
@@ -30,6 +30,10 @@ public class ComponentBlueprintElement<T> extends AbstractFormulangReference {
     return false;
   }
 
+  public String toString() {
+    return getDefaultReference().toString();
+  }
+
   public T getDefaultReference() {
     return this.defaultReference;
   }
@@ -40,7 +44,7 @@ public class ComponentBlueprintElement<T> extends AbstractFormulangReference {
   }
 
   @Override
-  public boolean isCompatible(Object r) {
+  public boolean isCompliant(Object r) {
     /**
      * Because of the nature of ComponentBlueprintElement objects, compatibility
      * checking is always applied to its default reference rather than itself.
@@ -58,7 +62,7 @@ public class ComponentBlueprintElement<T> extends AbstractFormulangReference {
       // tRef is an instance, so it can be checked for compatibility with whatever
       // rRef is.
       if (tRef instanceof AbstractFormulangReference) {
-        return (((AbstractFormulangReference) tRef).isCompatible(rRef));
+        return (((AbstractFormulangReference) tRef).isCompliant(rRef));
       }
 
       // But if tRef is a class, it can only be checked for compatibility if
@@ -69,30 +73,30 @@ public class ComponentBlueprintElement<T> extends AbstractFormulangReference {
     }
 
     // Otherwise, do generic compatibility checking through the supertype method
-    if (super.isCompatible(r)) {
+    if (super.isCompliant(r)) {
       return true;
     }
     return false;
   }
 
   @Override
-  public boolean isCompatibleToClass(Class<?> cls) {
+  public boolean isCompliantToClass(Class<?> cls) {
 
     if (getDefaultReference() instanceof Class) {
       if (cls.isAssignableFrom((Class<?>) getDefaultReference())) {
         return true;
       }
     }
-    if (super.isCompatibleToClass(cls)) {
+    if (super.isCompliantToClass(cls)) {
       return true;
     }
     return false;
   }
 
   @Override
-  public boolean isCompatibleToBlueprint(ComponentBlueprint bp) {
+  public boolean isCompliantToBlueprint(ComponentBlueprint bp) {
     if (bp.size() == 1) {
-      if (isCompatible(bp.getFirst())) {
+      if (isCompliant(bp.getFirst())) {
         return true;
       }
     }

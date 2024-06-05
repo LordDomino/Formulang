@@ -67,7 +67,7 @@ public class ComponentBlueprint extends AbstractFormulangReference {
 
   @Override
   public String getFlePreview() {
-    return "<ComponentBlueprint [elements=" + elements + ">";
+    return "<ComponentBlueprint " + elements + ">";
   }
 
   /**
@@ -119,7 +119,7 @@ public class ComponentBlueprint extends AbstractFormulangReference {
   }
 
   @Override
-  public boolean isCompatibleToBlueprint(ComponentBlueprint bp) {
+  public boolean isCompliantToBlueprint(ComponentBlueprint bp) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'isCompatibleToBlueprint'");
   }

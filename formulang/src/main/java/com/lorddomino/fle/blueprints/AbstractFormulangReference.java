@@ -31,7 +31,6 @@ public abstract class AbstractFormulangReference implements FlePreviewable {
    */
   public AbstractFormulangReference() {}
 
-  public abstract String getFlePreview();
 
   @Override
   public String toString() {
@@ -41,7 +40,7 @@ public abstract class AbstractFormulangReference implements FlePreviewable {
   /**
    * Returns {@code true} if this object is equivalent to or is compliant to the
    * given object {@code e}, otherwise returns {@code false}.
-   * @param e the object to compare compatibility
+   * @param e the object to compare compliance
    */
   public boolean isInstanceCompliant(AbstractFormulangReference e) {
     if (this == e) {
@@ -54,21 +53,21 @@ public abstract class AbstractFormulangReference implements FlePreviewable {
   }
 
   /**
-   * Checks if this Formulang reference is compatible to the given object
+   * Checks if this Formulang reference is compliant to the given object
    * {@code e}, that is if this is an identical copy of {@code e} or if this is
    * an instance of {@code e} if it is a class instead.
-   * @param e the object to check compatibility with
-   * @return {@code true} if this is compatible to {@code e}, otherwise returns
+   * @param e the object to check compliance with
+   * @return {@code true} if this is compliant to {@code e}, otherwise returns
    * {@code false}
    */
-  public boolean isCompatible(Object e) {
+  public boolean isCompliant(Object e) {
     if (this.equals(e)) {
       return true;
     }
-    if (e instanceof Class && isCompatibleToClass((Class<?>) e)) {
+    if (e instanceof Class && isCompliantToClass((Class<?>) e)) {
       return true;
     }
-    if (e instanceof ComponentBlueprint && isCompatibleToBlueprint((ComponentBlueprint) e)) {
+    if (e instanceof ComponentBlueprint && isCompliantToBlueprint((ComponentBlueprint) e)) {
       return true;
     }
     return false;
@@ -76,13 +75,13 @@ public abstract class AbstractFormulangReference implements FlePreviewable {
 
   /**
    * Checks if this Formulang reference is a subclass of the given class
-   * {@code cls}. If so, then this returns {@code true}, asserting
-   * compatibility, otherwise this returns {@code false}, asserting
-   * incompatibility with the given type.
+   * {@code cls}. If so, then this returns {@code true}, asserting compliance,
+   * otherwise this returns {@code false}, asserting incompliance with the given
+   * type.
    * @param cls the class to check compatibility with
    * @return whether or not this object is an instance of the given class
    */
-  public boolean isCompatibleToClass(Class<?> cls) {
+  public boolean isCompliantToClass(Class<?> cls) {
     if (cls.isInstance(this)) {
       return true;
     }
@@ -105,5 +104,5 @@ public abstract class AbstractFormulangReference implements FlePreviewable {
    * should intentionally be compatibility-incomparable with component
    * blueprints, an explicit return type of false should be implemented instead.
    */
-  public abstract boolean isCompatibleToBlueprint(ComponentBlueprint bp);
+  public abstract boolean isCompliantToBlueprint(ComponentBlueprint bp);
 }

@@ -47,6 +47,11 @@ public final class IpaRegistry {
     IpaRegistry.PHONES.add(pn);
   }
 
+  /**
+   * Removes the specified phone {@code pn} from the reference of all default
+   * IPA phone objects recognized and utilized by the Formulang Language Engine.
+   * @param pn the phone to remove
+   */
   public static final void unregisterPhone(Phone pn) {
     IpaRegistry.PHONES.remove(pn);
   }

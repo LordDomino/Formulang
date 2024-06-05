@@ -22,10 +22,4 @@ public class SubBlueprintElement extends ComponentBlueprintElement<ComponentBlue
   public SubBlueprintElement(ComponentBlueprint cbp) {
     super(cbp);
   }
-
-  @Override
-  public boolean isCompatible(Object r) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'isCompatible'");
-  }
 }
