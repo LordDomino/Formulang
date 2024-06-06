@@ -16,6 +16,7 @@ public final class IpaConsonantPhones {
     voicedBilabialPlosive.add(PlaceOfArticulation.BILABIAL);
     voicedBilabialPlosive.add(MannerOfArticulation.PLOSIVE);
   }
+
   public static final ConsonantPhone VOICED_BILABIAL_PLOSIVE = new ConsonantPhone("\u0062", true, voicedBilabialPlosive);
 
   private static final HashSet<ConsonantalArticulatoryProperty> voicelessBilabialPlosive = new HashSet<>();

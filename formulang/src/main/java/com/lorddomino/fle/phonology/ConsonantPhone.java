@@ -11,4 +11,7 @@ public class ConsonantPhone extends Phone {
     super(symbol, isIpaDefault, new HashSet<>(cAtcProps));
   }
 
+  @Override
+  public void processSpecificFields() {}
+
 }

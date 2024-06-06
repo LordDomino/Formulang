@@ -17,6 +17,11 @@ public class Structure extends TranscriptableComponent {
     processProperties();
   }
 
+  public Structure(String outStr, ComponentBlueprint bp, String fmlTrns, String ipaTrns, String rom) {
+    super(outStr, bp, fmlTrns, ipaTrns, rom);
+    processProperties();
+  }
+
   public Structure(ArrayList<AbstractComponent> comps) {
     super(null);
     this.components = comps;
@@ -46,7 +51,7 @@ public class Structure extends TranscriptableComponent {
       ae.add(new InstanceElement(absComp));
     }
     return new ComponentBlueprint(ae);
-  }
+}
 
   @Override
   public String processFormulangTranscript(String formulangTranscript) {
@@ -69,6 +74,9 @@ public class Structure extends TranscriptableComponent {
   }
 
   @Override
+  public void processSpecificFields() {}
+
+  @Override
   public boolean equals(Object obj) {
     if (this == obj) {
       return true;
@@ -86,6 +94,21 @@ public class Structure extends TranscriptableComponent {
 
   public ArrayList<AbstractComponent> getComponents() {
     return this.components;
+  }
+
+  @Override
+  public boolean isCompliantToBlueprint(ComponentBlueprint bp) {
+    if (getComponents().size() != bp.size()) {
+      return false;
+    }
+    for (int i = 0; i < getComponents().size(); i++) {
+      AbstractComponent comp = getComponents().get(i);
+      AbstractFormulangReference sbp = bp.getElements().get(i);
+      if (!comp.isCompliant(sbp)) {
+        return false;
+      }
+    }
+    return true;
   }
 
 }

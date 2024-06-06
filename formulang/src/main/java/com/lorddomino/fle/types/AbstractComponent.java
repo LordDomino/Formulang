@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.lorddomino.fle.blueprints.AbstractFormulangReference;
 import com.lorddomino.fle.blueprints.ComponentBlueprint;
 import com.lorddomino.fle.blueprints.DefaultBlueprintConstructor;
+import com.lorddomino.fle.exceptions.IncompliantException;
 
 public abstract class AbstractComponent extends AbstractFormulangReference
     implements DefaultBlueprintConstructor {
@@ -12,7 +13,7 @@ public abstract class AbstractComponent extends AbstractFormulangReference
   /**
    * The string representation of the object.
    */
-  private String outputString;
+  private String outputStr;
 
   /**
    * The FLE representation of the object.
@@ -24,9 +25,24 @@ public abstract class AbstractComponent extends AbstractFormulangReference
    */
   private ComponentBlueprint blueprint;
 
+  public AbstractComponent(ComponentBlueprint bp) {
+    try {
+      this.blueprint = initializeBlueprint(bp);
+    } catch (IncompliantException e) {
+      e.printStackTrace();
+      this.blueprint = constructDefaultBlueprint();
+    }
+    Objects.requireNonNull(this.blueprint);
+  }
+
   public AbstractComponent(String outputStr, ComponentBlueprint bp, String formulangTrns) {
-    this.outputString = outputStr;
-    this.blueprint = initializeBlueprint(bp);
+    this.outputStr = outputStr;
+    try {
+      this.blueprint = initializeBlueprint(bp);
+    } catch (IncompliantException e) {
+      e.printStackTrace();
+      this.blueprint = constructDefaultBlueprint();
+    }
     this.formulangTranscript = formulangTrns;
     Objects.requireNonNull(this.blueprint);
   }
@@ -41,16 +57,16 @@ public abstract class AbstractComponent extends AbstractFormulangReference
    * Returns the output string of this component.
    * @return the output string
    */
-  public String getOutputString() {
-    return outputString;
+  public String getOutputStr() {
+    return outputStr;
   }
 
   /**
    * Sets the output string of this component.
-   * @param outputString the output string
+   * @param outputStr the output string
    */
-  public void setOutputString(String outputString) {
-    this.outputString = outputString;
+  public void setOutputStr(String outputStr) {
+    this.outputStr = outputStr;
   }
 
   /**
@@ -64,11 +80,11 @@ public abstract class AbstractComponent extends AbstractFormulangReference
   /**
    * Sets the Formulang transcript of this component to the given
    * string.
-   * @param formulangTranscript the string to set the Formulang
+   * @param fmlTrns the string to set the Formulang
    * transcript to
    */
-  public void setFormulangTranscript(String formulangTranscript) {
-    this.formulangTranscript = formulangTranscript;
+  public void setFormulangTranscript(String fmlTrns) {
+    this.formulangTranscript = fmlTrns;
   }
 
   /**
@@ -79,11 +95,13 @@ public abstract class AbstractComponent extends AbstractFormulangReference
     return constructDefaultBlueprint();
   }
 
-  private ComponentBlueprint initializeBlueprint(ComponentBlueprint blueprint) {
-    if (blueprint == null) {
+  private ComponentBlueprint initializeBlueprint(ComponentBlueprint bp) throws IncompliantException {
+    if (bp == null) {
       return constructDefaultBlueprint();
+    } else if (this.isCompliantToBlueprint(bp)) {
+      return bp;
     } else {
-      return blueprint;
+      throw new IncompliantException(this, bp);
     }
   }
 
@@ -100,10 +118,14 @@ public abstract class AbstractComponent extends AbstractFormulangReference
    * allowed to override or modify the existing blueprint of a
    * component but it must conform to the default blueprint of the
    * component's class.
-   * @param blueprint the new component blueprint
+   * @param bp the new component blueprint
    */
-  public void setBlueprint(ComponentBlueprint blueprint) {
-    this.blueprint = initializeBlueprint(blueprint);
+  public void setBlueprint(ComponentBlueprint bp) {
+    try {
+      this.blueprint = initializeBlueprint(bp);
+    } catch (IncompliantException e) {
+      e.printStackTrace();
+    }
   }
 
   @Override

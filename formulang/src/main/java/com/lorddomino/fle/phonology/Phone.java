@@ -60,6 +60,7 @@ public abstract class Phone extends TranscriptableComponent {
    *
    * @param symbol
    * @param isIpaDefault
+ * @throws IncompliantException
    */
   public Phone(String symbol, boolean isIpaDefault, Set<ArticulatoryProperty> atcProps) {
     super(symbol, null, symbol);

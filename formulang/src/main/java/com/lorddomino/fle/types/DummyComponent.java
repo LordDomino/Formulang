@@ -40,4 +40,9 @@ public class DummyComponent extends AbstractComponent {
   public String getFlePreview() {
     return "<DummyComponent $>";
   }
+
+@Override
+public boolean isCompliant(Object e) {
+  return true;
+}
 }

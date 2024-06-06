@@ -10,4 +10,7 @@ public class VowelPhone extends Phone {
   public VowelPhone(String symbol, boolean isIpaDefault, Set<VocalicArticulatoryProperty> atcProps) {
     super(symbol, isIpaDefault, new HashSet<>(atcProps));
   }
+
+  @Override
+  public void processSpecificFields() {}
 }

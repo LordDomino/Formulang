@@ -1,5 +1,7 @@
 package com.lorddomino.fle.blueprints;
 
+import com.lorddomino.fle.blueprints.elements.ComponentBlueprintElement;
+
 /**
  * The {@code AbstractFormulangReference} class represents all blueprint element
  * objects essential to the Formulang Language Engine. This is also a wrapper
@@ -68,6 +70,9 @@ public abstract class AbstractFormulangReference implements FlePreviewable {
       return true;
     }
     if (e instanceof ComponentBlueprint && isCompliantToBlueprint((ComponentBlueprint) e)) {
+      return true;
+    }
+    if (e instanceof ComponentBlueprintElement && isCompliant(((ComponentBlueprintElement<?>) e).getDefaultReference())) {
       return true;
     }
     return false;

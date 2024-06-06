@@ -28,7 +28,7 @@ public interface DefaultBlueprintConstructor {
     if (elements.size() == 1) {
       return new ComponentBlueprint(elements.get(0));
     } else {
-      return new ComponentBlueprint(defineDefaultBlueprintElements());
+      return new ComponentBlueprint(elements);
     }
   }
 

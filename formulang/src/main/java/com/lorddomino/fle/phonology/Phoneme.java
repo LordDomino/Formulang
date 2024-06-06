@@ -31,7 +31,7 @@ public class Phoneme extends TranscriptableComponent {
   private HashSet<Phone> allophones = new HashSet<>();
 
   public Phoneme(Phone baseAllophone, String romanization) {
-    super(baseAllophone.getOutputString(), null, null);
+    super(baseAllophone.getOutputStr(), null, null);
     this.baseAllophone = baseAllophone;
     this.baseSymbol = baseAllophone.getSymbol();
     this.allophones.add(baseAllophone);
@@ -150,4 +150,7 @@ public class Phoneme extends TranscriptableComponent {
       return false;
     }
   }
+
+  @Override
+  public void processSpecificFields() {}
 }

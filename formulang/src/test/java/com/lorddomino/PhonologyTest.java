@@ -26,7 +26,7 @@ class PhonologyTest {
     Phone phone = new ConsonantPhone("A", false, new HashSet<ConsonantalArticulatoryProperty>());
 
     // Phone fields and getter methods demonstration
-    System.out.println("Output string: " + phone.getOutputString());
+    System.out.println("Output string: " + phone.getOutputStr());
     System.out.println("Formulang transcript: " + phone.getFormulangTranscript());
     System.out.println("Preferred blueprint: " + phone.getBlueprint().getFlePreview());
     System.out.println("IPA transcript: " + phone.getIpaTranscript());
@@ -91,9 +91,9 @@ class PhonologyTest {
     ClassElement ce2 = new ClassElement(phone.getClass());
     ClassElement ce3 = new ClassElement(DummyComponent.class);
 
-    System.out.println(ce1.equals(ce1)); // Expects true
-    System.out.println(ce1.equals(ce3)); // Expects false
-    System.out.println(ce1.equals(ce2)); // Expects true
+    System.out.println(ce1.isCompliant(ce1)); // Expects true
+    System.out.println(ce1.isCompliant(ce3)); // Expects false
+    System.out.println(ce2.isCompliant(ce1)); // Expects true
   }
 
   /**
@@ -108,10 +108,7 @@ class PhonologyTest {
     SubBlueprintElement bp = new SubBlueprintElement(new ComponentBlueprint(ce));
 
     System.out.println("Instance reference of IE:     " + ie);
-    System.out.println("Class reference of IE:        " + ie);
-    System.out.println("Instance reference of CE:     " + ce);  // Class elements have no instance references
     System.out.println("Class reference of CE:        " + ce);
     System.out.println("Instance reference of BP:     " + bp);
-    System.out.println("Class reference of BP:        " + bp);
   }
 }

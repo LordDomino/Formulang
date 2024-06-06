@@ -10,7 +10,6 @@ import static com.lorddomino.fle.ipa.IpaConsonantPhones.*;
 import com.lorddomino.fle.phonology.ConsonantPhone;
 import com.lorddomino.fle.phonology.Phone;
 import com.lorddomino.fle.phonology.Phoneme;
-import com.lorddomino.fle.types.DummyComponent;
 import com.lorddomino.fle.types.Structure;
 
 public class TypesTest {
@@ -21,7 +20,7 @@ public class TypesTest {
    * Test case: A new Phoneme object is created with null properties
    */
   @Test
-  void nullObjPropertiesConstruction() {
+  void nullObjPropertiesConstruction(){
     Phoneme phoneme = new Phoneme(new ConsonantPhone("a", false, new HashSet<>()), null);
 
     System.out.println(phoneme.getBaseSymbol());
@@ -30,21 +29,6 @@ public class TypesTest {
     System.out.println(phoneme.getFormulangTranscript());
     System.out.println(phoneme.getBaseAllophone());
     System.out.println(phoneme.getBaseAllophone().getSymbol());
-  }
-
-  /**
-   * Tester method for demonstrating equality of two DummyComponent objects.
-   */
-  @Test
-  void dummyComponentEquality() {
-    DummyComponent dummy1 = new DummyComponent(new ComponentBlueprint(new ClassElement(ConsonantPhone.class)));
-    DummyComponent dummy2 = new DummyComponent(new ComponentBlueprint(new ClassElement(Phoneme.class)));
-    DummyComponent dummy3 = new DummyComponent(new ComponentBlueprint(new ClassElement(Phone.class)));
-
-    System.out.println(dummy1.equals(dummy2));  // expects false
-    System.out.println(dummy2.equals(dummy3));  // expects false
-    System.out.println(dummy1.equals(dummy3));  // Subtype is equals to supertype -- expects true
-    System.out.println(dummy3.equals(dummy1));  // Supertype is equals to subtype -- expects false
   }
 
   @Test
@@ -56,7 +40,6 @@ public class TypesTest {
   @Test
   void structureTest() {
     Structure st = new Structure(VOICED_BILABIAL_PLOSIVE, VOICELESS_BILABIAL_PLOSIVE);
-
     System.out.println(st.getBlueprint());
   }
 }
