@@ -42,6 +42,15 @@ public class Structure extends TranscriptableComponent {
   }
 
   @Override
+  public String processOutputStr(String outputStr) {
+    String o = "";
+    for (AbstractComponent comp : getComponents()) {
+      o += comp.getOutputStr();
+    }
+    return o;
+  }
+
+  @Override
   public ComponentBlueprint processBlueprint(ComponentBlueprint bp) {
     if (getComponents().size() == 0) {
       return getDefaultBlueprint();
@@ -81,7 +90,7 @@ public class Structure extends TranscriptableComponent {
     if (this == obj) {
       return true;
     }
-    if (obj instanceof AbstractFormulangReference && isCompliant(obj)) {
+    if (obj instanceof AbstractComponent && isCompliant(obj)) {
       return true;
     }
     return false;

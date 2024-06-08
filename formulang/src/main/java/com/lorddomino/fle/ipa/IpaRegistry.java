@@ -5,6 +5,8 @@ import java.util.HashSet;
 import com.lorddomino.fle.phonology.ConsonantPhone;
 import com.lorddomino.fle.phonology.Phone;
 import com.lorddomino.fle.phonology.VowelPhone;
+import com.lorddomino.fle.phonology.articulatoryproperties.ArticulatoryProperty;
+import com.lorddomino.fle.phonology.articulatoryproperties.MannerOfArticulation;
 
 public final class IpaRegistry {
 
@@ -36,6 +38,28 @@ public final class IpaRegistry {
       }
     }
     return cl;
+  }
+
+  public static final HashSet<Phone> getByProperty(ArticulatoryProperty prop) {
+    HashSet<Phone> cl = new HashSet<>();
+    for (Phone pn : PHONES) {
+      if (pn.containsProperty(prop)) {
+        cl.add(pn);
+      }
+    }
+    return cl;
+  }
+
+  public static final HashSet<Phone> getFricatives() {
+    return getByProperty(MannerOfArticulation.FRICATIVE);
+  }
+
+  public static final HashSet<Phone> getNasals() {
+    return getByProperty(MannerOfArticulation.NASAL);
+  }
+
+  public static final HashSet<Phone> getPlosives() {
+    return getByProperty(MannerOfArticulation.PLOSIVE);
   }
 
   /**

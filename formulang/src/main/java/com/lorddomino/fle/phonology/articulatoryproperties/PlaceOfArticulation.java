@@ -5,7 +5,7 @@ public enum PlaceOfArticulation implements ConsonantalArticulatoryProperty {
   LABIODENTAL     (6.1f, 0.0f, -2.3f),
   DENTAL          (5.8f, 0.0f, -1.9f),
   ALVEOLAR        (5.4f, 0.0f, -1.4f),
-  POST_ALVEOLAR   (5.0f, 0.0f, -1.0f),
+  POSTALVEOLAR   (5.0f, 0.0f, -1.0f),
   RETROFLEX       (4.6f, 0.0f, -0.7f),
   PALATAL         (4.2f, 0.0f, -0.6f),
   VELAR           (2.5f, 0.0f, -0.5f),

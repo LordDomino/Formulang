@@ -2,9 +2,8 @@ package com.lorddomino;
 
 import org.junit.jupiter.api.Test;
 
-import com.lorddomino.fle.blueprints.elements.ClassElement;
-import com.lorddomino.fle.phonology.ConsonantPhone;
-import com.lorddomino.fle.phonology.Phone;
+import com.lorddomino.fle.ipa.IpaConsonantPhones;
+import com.lorddomino.fle.types.Structure;
 
 public class CBP_Tests {
 
@@ -13,10 +12,21 @@ public class CBP_Tests {
    */
   @Test
   void Test1InstanceElements() {
-    ClassElement ce1 = new ClassElement(Phone.class);
-    ClassElement ie1 = new ClassElement(ConsonantPhone.class);
+    IpaConsonantPhones.load();
 
-    System.out.println(ce1.isCompliant(ie1));
+    Structure syllable1 = new Structure(
+      IpaConsonantPhones.VOICED_BILABIAL_FRICATIVE,
+      IpaConsonantPhones.VOICED_VELAR_APPROXIMANT,
+      IpaConsonantPhones.VOICED_ALVEOLAR_FLAP
+    );
+
+    Structure syllable2 = new Structure(
+      IpaConsonantPhones.VOICED_BILABIAL_PLOSIVE,
+      syllable1
+    );
+
+    System.out.println(syllable2.getOutputStr());
+    System.out.println(syllable2.getFormulangTranscript());
+    System.out.println(syllable2.getIpaTranscript());
   }
-
 }

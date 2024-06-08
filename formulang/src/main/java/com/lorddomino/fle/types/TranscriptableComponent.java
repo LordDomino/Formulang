@@ -35,11 +35,12 @@ public abstract class TranscriptableComponent extends AbstractComponent {
   }
 
   public void processProperties() {
-    processCommonFields();
     processSpecificFields();
+    processCommonFields();
   }
 
   private void processCommonFields() {
+    setOutputStr(processOutputStr(getOutputStr()));
     setBlueprint(processBlueprint(getBlueprint()));
     setFormulangTranscript(processFormulangTranscript(getFormulangTranscript()));
     setIpaTranscript(processIpaTranscript(ipaTranscript));
@@ -87,6 +88,8 @@ public abstract class TranscriptableComponent extends AbstractComponent {
    * @return the actual Romanization of this component
    */
   public abstract String processRomanization(String rom);
+
+  public abstract String processOutputStr(String outputStr);
 
   public String getIpaTranscript() {
     return ipaTranscript;

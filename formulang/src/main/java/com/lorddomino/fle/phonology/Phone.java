@@ -2,8 +2,8 @@ package com.lorddomino.fle.phonology;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Objects;
-import java.util.Set;
 
 import com.lorddomino.fle.blueprints.AbstractFormulangReference;
 import com.lorddomino.fle.blueprints.ComponentBlueprint;
@@ -54,7 +54,7 @@ public abstract class Phone extends TranscriptableComponent {
    */
   private boolean isIpaDefault;
 
-  private Set<ArticulatoryProperty> articulatoryProperties;
+  private LinkedHashSet<ArticulatoryProperty> articulatoryProperties;
 
   /**
    *
@@ -62,7 +62,7 @@ public abstract class Phone extends TranscriptableComponent {
    * @param isIpaDefault
  * @throws IncompliantException
    */
-  public Phone(String symbol, boolean isIpaDefault, Set<ArticulatoryProperty> atcProps) {
+  public Phone(String symbol, boolean isIpaDefault, LinkedHashSet<ArticulatoryProperty> atcProps) {
     super(symbol, null, symbol);
     this.symbol = symbol;
     if (isIpaDefault) {
@@ -106,7 +106,7 @@ public abstract class Phone extends TranscriptableComponent {
     }
   }
 
-  public Set<? extends ArticulatoryProperty> getArticulatoryProperties() {
+  public LinkedHashSet<? extends ArticulatoryProperty> getArticulatoryProperties() {
     return this.articulatoryProperties;
   }
 
@@ -121,6 +121,11 @@ public abstract class Phone extends TranscriptableComponent {
   public void replaceArticulatoryProperty(ArticulatoryProperty oldProp, ArticulatoryProperty newProp) {
     removeProperty(oldProp);
     addProperty(newProp);
+  }
+
+  @Override
+  public String processOutputStr(String outputStr) {
+    return getSymbol();
   }
 
   @Override
@@ -163,6 +168,14 @@ public abstract class Phone extends TranscriptableComponent {
     } else {
       return "<Phone " + this.getIpaTranscript() + ">";
     }
+  }
+
+  public String getDetailedFlePreview() {
+    String detailedStr = "";
+    for (ArticulatoryProperty prop : getArticulatoryProperties()) {
+      detailedStr += " " + prop.toString();
+    }
+    return getFlePreview().substring(0, getFlePreview().length()-1) + detailedStr + ">";
   }
 
   @Override

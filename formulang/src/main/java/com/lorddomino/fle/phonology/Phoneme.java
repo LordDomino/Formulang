@@ -46,6 +46,11 @@ public class Phoneme extends TranscriptableComponent {
   }
 
   @Override
+  public String processOutputStr(String outputStr) {
+    return getBaseSymbol();
+  }
+
+  @Override
   public String processIpaTranscript(String ipaTranscript) {
     if (ipaTranscript == null) {
       return "/" + this.getBaseSymbol() + "/";
@@ -153,4 +158,5 @@ public class Phoneme extends TranscriptableComponent {
 
   @Override
   public void processSpecificFields() {}
+
 }
