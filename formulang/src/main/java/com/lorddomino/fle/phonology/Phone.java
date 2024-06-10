@@ -106,7 +106,7 @@ public abstract class Phone extends TranscriptableComponent {
     }
   }
 
-  public LinkedHashSet<? extends ArticulatoryProperty> getArticulatoryProperties() {
+  public LinkedHashSet<ArticulatoryProperty> getArticulatoryProperties() {
     return this.articulatoryProperties;
   }
 

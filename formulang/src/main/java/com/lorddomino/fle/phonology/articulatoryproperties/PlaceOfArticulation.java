@@ -1,11 +1,11 @@
 package com.lorddomino.fle.phonology.articulatoryproperties;
 
-public enum PlaceOfArticulation implements ConsonantalArticulatoryProperty {
+public enum PlaceOfArticulation implements ArticulatoryProperty {
   BILABIAL        (6.5f, 0.0f, -2.1f),
   LABIODENTAL     (6.1f, 0.0f, -2.3f),
   DENTAL          (5.8f, 0.0f, -1.9f),
   ALVEOLAR        (5.4f, 0.0f, -1.4f),
-  POSTALVEOLAR   (5.0f, 0.0f, -1.0f),
+  POSTALVEOLAR    (5.0f, 0.0f, -1.0f),
   RETROFLEX       (4.6f, 0.0f, -0.7f),
   PALATAL         (4.2f, 0.0f, -0.6f),
   VELAR           (2.5f, 0.0f, -0.5f),

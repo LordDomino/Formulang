@@ -1,6 +1,6 @@
 package com.lorddomino.fle.phonology.articulatoryproperties;
 
-public enum MannerOfArticulation implements ConsonantalArticulatoryProperty {
+public enum MannerOfArticulation implements ArticulatoryProperty {
   PLOSIVE,
   NASAL,
   TRILL,

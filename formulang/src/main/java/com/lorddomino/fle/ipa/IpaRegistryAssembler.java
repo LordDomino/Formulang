@@ -5,12 +5,21 @@ import java.util.LinkedHashSet;
 import java.util.Objects;
 
 import com.lorddomino.fle.phonology.ConsonantPhone;
-import com.lorddomino.fle.phonology.articulatoryproperties.ConsonantalArticulatoryProperty;
+import com.lorddomino.fle.phonology.Phone;
+import com.lorddomino.fle.phonology.VowelPhone;
+import com.lorddomino.fle.phonology.articulatoryproperties.ArticulatoryProperty;
+import com.lorddomino.fle.phonology.articulatoryproperties.Backness;
+import com.lorddomino.fle.phonology.articulatoryproperties.Height;
 import com.lorddomino.fle.phonology.articulatoryproperties.MannerOfArticulation;
 import com.lorddomino.fle.phonology.articulatoryproperties.PlaceOfArticulation;
+import com.lorddomino.fle.phonology.articulatoryproperties.Roundness;
 import com.lorddomino.fle.phonology.articulatoryproperties.Voicing;
 
-public final class IpaConsonantPhones {
+public final class IpaRegistryAssembler {
+
+  /**
+   * CONSONANTS
+   */
 
   // Plosives
   public static final ConsonantPhone VOICED_BILABIAL_PLOSIVE = assembleConsonant(
@@ -76,7 +85,7 @@ public final class IpaConsonantPhones {
     "\u0299", Voicing.VOICED, PlaceOfArticulation.BILABIAL, MannerOfArticulation.TRILL);
 
   public static final ConsonantPhone VOICED_ALVEOLAR_TRILL = assembleConsonant(
-    "\u0072", Voicing.VOICED, PlaceOfArticulation.ALVEOLAR, MannerOfArticulation.TRILL);
+    "r", Voicing.VOICED, PlaceOfArticulation.ALVEOLAR, MannerOfArticulation.TRILL);
 
   public static final ConsonantPhone VOICED_UVULAR_TRILL = assembleConsonant(
     "\u0280", Voicing.VOICED, PlaceOfArticulation.UVULAR, MannerOfArticulation.TRILL);
@@ -190,12 +199,119 @@ public final class IpaConsonantPhones {
   public static final ConsonantPhone VOICED_VELAR_LATERAL_APPROXIMANT = assembleConsonant(
     "\u029f", Voicing.VOICED, PlaceOfArticulation.VELAR, MannerOfArticulation.LATERAL_APPROXIMANT);
 
-  public static final void load() {}
+  /**
+   * VOWELS
+   */
 
-  public static final ConsonantPhone assembleConsonant(String symbol, ConsonantalArticulatoryProperty ... props) {
+  // Close
+  public static final VowelPhone CLOSE_FRONT_UNROUNDED = assembleVowel(
+    "i", Height.CLOSE, Backness.FRONT, Roundness.UNROUNDED);
+
+  public static final VowelPhone CLOSE_FRONT_ROUNDED = assembleVowel(
+    "y", Height.CLOSE, Backness.FRONT, Roundness.ROUNDED);
+
+  public static final VowelPhone CLOSE_CENTRAL_UNROUNDED = assembleVowel(
+    "\u0268", Height.CLOSE, Backness.CENTRAL, Roundness.UNROUNDED);
+
+  public static final VowelPhone CLOSE_CENTRAL_ROUNDED = assembleVowel(
+    "\u0289", Height.CLOSE, Backness.CENTRAL, Roundness.ROUNDED);
+
+  public static final VowelPhone CLOSE_BACK_UNROUNDED = assembleVowel(
+    "\u026f", Height.CLOSE, Backness.BACK, Roundness.UNROUNDED);
+
+  public static final VowelPhone CLOSE_BACK_ROUNDED = assembleVowel(
+    "u", Height.CLOSE, Backness.BACK, Roundness.ROUNDED);
+
+  // Near-close
+  public static final VowelPhone NEARCLOSE_NEARFRONT_UNROUNDED = assembleVowel(
+    "\u026a", Height.NEARCLOSE, Backness.NEARFRONT, Roundness.UNROUNDED);
+
+  public static final VowelPhone NEARCLOSE_NEARFRONT_ROUNDED = assembleVowel(
+    "\u028f", Height.NEARCLOSE, Backness.NEARFRONT, Roundness.ROUNDED);
+
+  public static final VowelPhone NEARCLOSE_NEARBACK_ROUNDED = assembleVowel(
+    "\u028a", Height.NEARCLOSE, Backness.NEARBACK, Roundness.ROUNDED);
+
+  // Close-mid
+  public static final VowelPhone CLOSEMID_FRONT_UNROUNDED = assembleVowel(
+    "e", Height.CLOSEMID, Backness.FRONT, Roundness.UNROUNDED);
+
+  public static final VowelPhone CLOSEMID_FRONT_ROUNDED = assembleVowel(
+    "\u00f8", Height.CLOSEMID, Backness.FRONT, Roundness.ROUNDED);
+
+  public static final VowelPhone CLOSEMID_CENTRAL_UNROUNDED = assembleVowel(
+    "\u0258", Height.CLOSEMID, Backness.CENTRAL, Roundness.UNROUNDED);
+
+  public static final VowelPhone CLOSEMID_CENTRAL_ROUNDED = assembleVowel(
+    "\u0275", Height.CLOSEMID, Backness.CENTRAL, Roundness.ROUNDED);
+
+  public static final VowelPhone CLOSEMID_BACK_UNROUNDED = assembleVowel(
+    "\u0264", Height.CLOSEMID, Backness.BACK, Roundness.UNROUNDED);
+
+  public static final VowelPhone CLOSEMID_BACK_ROUNDED = assembleVowel(
+    "o", Height.CLOSEMID, Backness.BACK, Roundness.ROUNDED);
+
+  // Mid
+  public static final VowelPhone MID_CENTRAL = assembleVowel(
+    "\u0259", Height.MID, Backness.BACK);
+
+  // Open-mid
+  public static final VowelPhone OPENMID_FRONT_UNROUNDED = assembleVowel(
+    "\u025b", Height.OPENMID, Backness.FRONT, Roundness.UNROUNDED);
+
+  public static final VowelPhone OPENMID_FRONT_ROUNDED = assembleVowel(
+    "\u0153", Height.OPENMID, Backness.FRONT, Roundness.ROUNDED);
+
+  public static final VowelPhone OPENMID_CENTRAL_UNROUNDED = assembleVowel(
+    "\u025c", Height.OPENMID, Backness.CENTRAL, Roundness.ROUNDED);
+
+  public static final VowelPhone OPENMID_CENTRAL_ROUNDED = assembleVowel(
+    "\u025e", Height.OPENMID, Backness.CENTRAL, Roundness.ROUNDED);
+
+  public static final VowelPhone OPENMID_BACK_UNROUNDED = assembleVowel(
+    "\u028c", Height.OPENMID, Backness.BACK, Roundness.UNROUNDED);
+
+  public static final VowelPhone OPENMID_BACK_ROUNDED = assembleVowel(
+    "\u0254", Height.OPENMID, Backness.BACK, Roundness.ROUNDED);
+
+  // Near-open
+  public static final VowelPhone NEAROPEN_FRONT_UNROUNDED = assembleVowel(
+    "\u00e6", Height.NEAROPEN, Backness.FRONT, Roundness.UNROUNDED);
+
+  public static final VowelPhone NEAROPEN_CENTRAL = assembleVowel(
+    "\u0250", Height.NEAROPEN, Backness.CENTRAL);
+
+  // Open
+  public static final VowelPhone OPEN_FRONT_UNROUNDED = assembleVowel(
+    "a", Height.OPEN, Backness.FRONT, Roundness.UNROUNDED);
+
+  public static final VowelPhone OPEN_FRONT_ROUNDED = assembleVowel(
+    "\u0276", Height.OPEN, Backness.FRONT, Roundness.ROUNDED);
+
+  public static final VowelPhone OPEN_BACK_UNROUNDED = assembleVowel(
+    "\u0251", Height.OPEN, Backness.BACK, Roundness.UNROUNDED);
+
+  public static final VowelPhone OPEN_BACK_ROUNDED = assembleVowel(
+    "\u0252", Height.OPEN, Backness.BACK, Roundness.ROUNDED);
+
+  public static final void load() {
+    for (Phone pn : IpaRegistry.getPhones()) {
+      System.out.println("Loaded IPA phone: " + pn.getDetailedFlePreview());
+    }
+    System.out.println("Loaded default IPA phones");
+  }
+
+  public static final ConsonantPhone assembleConsonant(String symbol, ArticulatoryProperty ... props) {
     Objects.requireNonNull(props, "props cannot null in RegistryAssembler");
-    final LinkedHashSet<ConsonantalArticulatoryProperty> propSet = new LinkedHashSet<>(Arrays.asList(props));
+    final LinkedHashSet<ArticulatoryProperty> propSet = new LinkedHashSet<>(Arrays.asList(props));
     ConsonantPhone conPn = new ConsonantPhone(symbol, true, propSet);
     return conPn;
+  }
+
+  public static final VowelPhone assembleVowel(String symbol, ArticulatoryProperty ... props) {
+    Objects.requireNonNull(props, "props cannot null in RegistryAssembler");
+    final LinkedHashSet<ArticulatoryProperty> propSet = new LinkedHashSet<>(Arrays.asList(props));
+    VowelPhone vowPn = new VowelPhone(symbol, true, propSet);
+    return vowPn;
   }
 }

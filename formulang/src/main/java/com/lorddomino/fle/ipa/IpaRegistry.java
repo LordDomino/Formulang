@@ -33,7 +33,7 @@ public final class IpaRegistry {
   public static final HashSet<VowelPhone> getVowelPhones() {
     HashSet<VowelPhone> cl = new HashSet<>();
     for (Phone pn : PHONES) {
-      if (pn instanceof ConsonantPhone) {
+      if (pn instanceof VowelPhone) {
         cl.add((VowelPhone) pn);
       }
     }

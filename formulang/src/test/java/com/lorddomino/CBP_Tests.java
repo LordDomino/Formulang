@@ -2,7 +2,7 @@ package com.lorddomino;
 
 import org.junit.jupiter.api.Test;
 
-import com.lorddomino.fle.ipa.IpaConsonantPhones;
+import com.lorddomino.fle.ipa.IpaRegistryAssembler;
 import com.lorddomino.fle.types.Structure;
 
 public class CBP_Tests {
@@ -12,16 +12,16 @@ public class CBP_Tests {
    */
   @Test
   void Test1InstanceElements() {
-    IpaConsonantPhones.load();
+    IpaRegistryAssembler.load();
 
     Structure syllable1 = new Structure(
-      IpaConsonantPhones.VOICED_BILABIAL_FRICATIVE,
-      IpaConsonantPhones.VOICED_VELAR_APPROXIMANT,
-      IpaConsonantPhones.VOICED_ALVEOLAR_FLAP
+      IpaRegistryAssembler.VOICELESS_DENTAL_FRICATIVE,
+      IpaRegistryAssembler.CLOSEMID_FRONT_UNROUNDED,
+      IpaRegistryAssembler.VOICED_ALVEOLAR_TRILL
     );
 
     Structure syllable2 = new Structure(
-      IpaConsonantPhones.VOICED_BILABIAL_PLOSIVE,
+      IpaRegistryAssembler.OPEN_FRONT_UNROUNDED,
       syllable1
     );
 
