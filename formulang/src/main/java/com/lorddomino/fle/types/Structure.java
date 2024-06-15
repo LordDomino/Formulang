@@ -5,17 +5,11 @@ import java.util.Arrays;
 
 import com.lorddomino.fle.blueprints.AbstractFormulangReference;
 import com.lorddomino.fle.blueprints.ComponentBlueprint;
-import com.lorddomino.fle.blueprints.elements.ClassElement;
 import com.lorddomino.fle.blueprints.elements.InstanceElement;
 
-public class Structure extends TranscriptableComponent {
+public abstract class Structure extends TranscriptableComponent {
 
   private ArrayList<AbstractComponent> components = new ArrayList<>();
-
-  public Structure() {
-    super(null);
-    processProperties();
-  }
 
   public Structure(String outStr, ComponentBlueprint bp, String fmlTrns, String ipaTrns, String rom) {
     super(outStr, bp, fmlTrns, ipaTrns, rom);
@@ -32,13 +26,6 @@ public class Structure extends TranscriptableComponent {
     super(null);
     this.components = new ArrayList<>(Arrays.asList(comps));
     processProperties();
-  }
-
-  @Override
-  public ArrayList<AbstractFormulangReference> defineDefaultBlueprintElements() {
-    ArrayList<AbstractFormulangReference> e = new ArrayList<>();
-    e.add(new ClassElement(Structure.class));
-    return e;
   }
 
   @Override

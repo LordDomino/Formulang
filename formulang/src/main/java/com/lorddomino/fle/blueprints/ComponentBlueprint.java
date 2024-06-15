@@ -120,7 +120,15 @@ public class ComponentBlueprint extends AbstractFormulangReference {
 
   @Override
   public boolean isCompliantToBlueprint(ComponentBlueprint bp) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'isCompatibleToBlueprint'");
+    if (bp.size() != this.size()) {
+      return false;
+    }
+    for (int i = 0; i < this.size(); i++) {
+      if (!elements.get(i).isCompliant(bp.elements.get(i))) {
+        return false;
+      }
+      return true;
+    }
+    return false;
   }
 }
