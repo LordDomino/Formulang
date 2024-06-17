@@ -11,11 +11,11 @@ import java.util.regex.Pattern;
 
 import com.lorddomino.fle.exceptions.InvalidFileException;
 
-public class FmlTokenizer {
+public class FleTokenizer {
 
   private File file;
 
-  public FmlTokenizer(File f) throws InvalidFileException, FileNotFoundException {
+  public FleTokenizer(File f) throws InvalidFileException, FileNotFoundException {
     if (!f.exists()) {
       throw new FileNotFoundException("Filepath \"" + f.getPath() + "\" does not exist");
     }
@@ -27,13 +27,17 @@ public class FmlTokenizer {
     this.file = f;
   }
 
+  /**
+   * Returns the {@code File} object associated to this tokenizer.
+   * @return the {@code File} object
+   */
   public File getFile() {
     return this.file;
   }
 
   /**
    * Returns the string contents of the tokenizer's file.
-   * @throws IOException
+   * @throws IOException If an error is encountered while reading the file
    */
   public String getString() throws IOException {
     String cleaned = "";
@@ -43,7 +47,6 @@ public class FmlTokenizer {
     String line = "";
     while ((line = br.readLine()) != null) {
       String[] commentSplit = line.split("\\/\\/");
-      System.out.println(commentSplit[0]);
       cleaned += commentSplit[0];
     }
 
@@ -54,29 +57,24 @@ public class FmlTokenizer {
   /**
    * Return the string contents of the tokenizer's file without all the
    * whitespace.
-   * @throws IOException
+   * @throws IOException If an error is encountered while reading the file
    */
   public String getCleanStr() throws IOException {
     return getString().replace("\\s+", "");
   }
 
-  public static void main(String[] args) {
-    System.out.print("\033[H\033[2J");
-
-    File f = new File("formulang\\src\\main\\java\\com\\lorddomino\\fle\\parsing\\some_file.fml");
-
+  /**
+   * Returns the arraylist of string representing the tokens of the file.
+   * @return
+   */
+  public ArrayList<String> tokenize() {
+    Pattern pattern = Pattern.compile(TokenDefinitions.getRegexSplitter());
+    ArrayList<String> groups = new ArrayList<>();
     try {
-      FmlTokenizer scanner = new FmlTokenizer(f);
-
-      Pattern pattern = Pattern.compile(TokenDefinitions.getRegexSplitter());
-      ArrayList<String> groups = new ArrayList<>(Arrays.asList(pattern.split(scanner.getString())));
-
-      for (String token : groups) {
-        System.out.println(token);
-      }
-
-    } catch (InvalidFileException | IOException e) {
+      groups = new ArrayList<>(Arrays.asList(pattern.split(getString())));
+    } catch (IOException e) {
       e.printStackTrace();
     }
+    return groups;
   }
 }

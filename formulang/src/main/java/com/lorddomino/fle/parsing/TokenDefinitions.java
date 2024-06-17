@@ -6,53 +6,63 @@ import java.util.Comparator;
 
 public enum TokenDefinitions {
 
-  NEWLINE("\\n", TokenType.WHITESPACE),
+  /**KEYWORDS */
+  LANGUAGE_KEYWORD      ("lang", "lang", TokenType.KEYWORD),
+  BLUEPRINTS_KEYWORD    ("blueprints", "blueprints", TokenType.KEYWORD),
+  MAIN_KEYWORD          ("main", "main", TokenType.KEYWORD),
+  GAMMA_KEYWORD         ("gamma", "gamma", TokenType.KEYWORD),
+  INSTANCE_KEYWORD      ("new", "new", TokenType.KEYWORD),
+  USING_KEYWORD         ("using", "using", TokenType.KEYWORD),
+  PRINT_KEYWORD         ("print", "print", TokenType.KEYWORD),
+  PRINTIPA_KEYWORD      ("printipa", "printipa", TokenType.KEYWORD),
+  PRINTFML_KEYWORD      ("printfml", "printfml", TokenType.KEYWORD),
 
-  PERIOD("\\.", TokenType.SYNTAX),
-  DELIMITER("\\;", TokenType.SYNTAX),
-  UNICODE("\\\\u", TokenType.SYNTAX),
-  ELLIPSIS("\\.\\.\\.", TokenType.SYNTAX),
+  LITERAL               ("([a-zA-Z0-9])*", "", TokenType.IDENTIFIER),
 
-  SLASH("\\/", TokenType.GROUPING),
-  BRACE_OPEN("\\{", TokenType.GROUPING),
-  BRACE_CLOSE("\\}", TokenType.GROUPING),
-  PAREN_OPEN("\\(", TokenType.GROUPING),
-  PAREN_CLOSE("\\)", TokenType.GROUPING),
-  ANGLE_BRACKET_OPEN("\\<", TokenType.GROUPING),
-  ANGLE_BRACKET_CLOSE("\\>", TokenType.GROUPING),
+  /**WHITESPACES */
+  NEWLINE               ("\n", "\n", TokenType.WHITESPACE),
+
+  PERIOD                ("\\.", ".", TokenType.SYNTAX),
+  DELIMITER             ("\\;", ";", TokenType.SYNTAX),
+  UNICODE               ("\\\\u", "\\u", TokenType.SYNTAX),
+  ELLIPSIS              ("\\.\\.\\.", "...", TokenType.SYNTAX),
+
+  /**GROUPING SYMBOLS */
+  SLASH                 ("\\/", "/", TokenType.GROUPING),
+  BRACE_OPEN            ("\\{", "{", TokenType.GROUPING),
+  BRACE_CLOSE           ("\\}", "}", TokenType.GROUPING),
+  PAREN_OPEN            ("\\(", "(", TokenType.GROUPING),
+  PAREN_CLOSE           ("\\)", ")", TokenType.GROUPING),
+  ANGLE_BRACKET_OPEN    ("\\<", "<", TokenType.GROUPING),
+  ANGLE_BRACKET_CLOSE   ("\\>", ">", TokenType.GROUPING),
 
   /**OPERATORS */
-  MUTATOR("->", TokenType.OPERATOR),
-  CONCATENATOR("\\+", TokenType.OPERATOR),
-  SUBTRACTOR("\\-", TokenType.OPERATOR),
-  ASSIGNMENT_OPERATOR("\\=", TokenType.OPERATOR),
-  BLUEPRINT_ASSIGNER("\\:", TokenType.OPERATOR),
-
-  /**KEYWORDS */
-  LANGUAGE_KEYWORD("lang", TokenType.KEYWORD),
-  BLUEPRINTS_KEYWORD("blueprints", TokenType.KEYWORD),
-  MAIN_KEYWORD("main", TokenType.KEYWORD),
-  GAMMA_KEYWORD("gamma", TokenType.KEYWORD),
-  INSTANCE_KEYWORD("new", TokenType.KEYWORD),
-  USING_KEYWORD("using", TokenType.KEYWORD),
-  PRINT_KEYWORD("print", TokenType.KEYWORD),
-  PRINTIPA_KEYWORD("printipa", TokenType.KEYWORD),
-  PRINTFML_KEYWORD("printfml", TokenType.KEYWORD),
+  MUTATOR               ("->", "->", TokenType.OPERATOR),
+  CONCATENATOR          ("\\+", "+", TokenType.OPERATOR),
+  SUBTRACTOR            ("\\-", "-", TokenType.OPERATOR),
+  ASSIGNMENT_OPERATOR   ("\\=", "=", TokenType.OPERATOR),
+  BLUEPRINT_ASSIGNER    ("\\:", ":", TokenType.OPERATOR),
 
   /**MISCELLANEOUS */
-  COMMENT_TAG("\\/\\/", TokenType.SYNTAX),
+  COMMENT_TAG           ("\\/\\/", "//", TokenType.SYNTAX),
   ;
 
-  private String str;
+  private String regex;
+  private String source;
   private TokenType type;
 
-  private TokenDefinitions(String str, TokenType type) {
-    this.str = str;
+  private TokenDefinitions(String regex, String source, TokenType type) {
+    this.regex = regex;
+    this.source = source;
     this.type = type;
   }
 
-  public String getStr() {
-    return this.str;
+  public String getRegex() {
+    return this.regex;
+  }
+
+  public String getSource() {
+    return this.source;
   }
 
   public static String getRegexSplitter() {
@@ -66,7 +76,7 @@ public enum TokenDefinitions {
         default:
       }
 
-      definitions.add(def.getStr());
+      definitions.add(def.getRegex());
     }
 
     Collections.sort(definitions, new StringLengthComparator());
@@ -76,22 +86,26 @@ public enum TokenDefinitions {
         continue;
       }
       switch(def) {
+        case LITERAL:
+          splits.add("((?<=\\|[^a-zA-Z0-9])(?=[a-zA-Z0-9])|(?<=[a-zA-Z0-9])(?=[^a-zA-Z0-9]))");
+          break;
         case NEWLINE:
           splits.add("(?=\\s)(?<!\\s)|(?!\\s+)(?<=\\s)");
+          break;
         case ELLIPSIS:
-          splits.add("((?=" + def.str + ")|(?<=" + def.str + "))");
+          splits.add("((?=" + def.regex + ")|(?<=" + def.regex + "))");
           break;
         case PERIOD:
-          splits.add("((?<!"+ def.str + ")(?=" + def.str + ")|(?<=" + def.str + ")(?!" + def.str + "))");
+          splits.add("((?<!"+ def.regex + ")(?=" + def.regex + ")|(?<=" + def.regex + ")(?!" + def.regex + "))");
           break;
         case SUBTRACTOR:
-          splits.add("((?=" + def.str + ")|(?<=" + def.str + ")(?!>))");
+          splits.add("((?=" + def.regex + ")|(?<=" + def.regex + ")(?!>))");
           break;
         case ANGLE_BRACKET_CLOSE:
-          splits.add("((?<!\\-)(?=" + def.str + ")|(?<=" + def.str + "))");
+          splits.add("((?<!\\-)(?=" + def.regex + ")|(?<=" + def.regex + "))");
           break;
         default:
-          splits.add("((?=" + def.str + ")|(?<=" + def.str + "))");
+          splits.add("((?=" + def.regex + ")|(?<=" + def.regex + "))");
           break;
       }
     }
@@ -103,6 +117,7 @@ public enum TokenDefinitions {
 
 enum TokenType {
   KEYWORD,
+  IDENTIFIER,
   SYNTAX,
   OPERATOR,
   GROUPING,
@@ -115,6 +130,5 @@ class StringLengthComparator implements Comparator<String> {
   public int compare(String o1, String o2) {
     return (o1.length() - o2.length())*-1;
   }
-
 
 }
