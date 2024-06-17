@@ -1,0 +1,16 @@
+lang Testlang {
+  blueprints {
+    gamma Syllable : {gamma Onset + gamma Nucleus + gamma Coda + /\u028b/};
+    gamma Onset : {...<C>};
+    gamma Nucleus : {...<V>};
+    gamma Coda : {...<C>};
+  }
+
+  main {
+    new syllable1 using gamma Testlang.Syllable = {  // This is some comment
+      {/t/ + /r/} + {/a/} + {/t/} -> {/h/}
+    };
+
+    print Testlang.main.syllable1;
+  }
+}
