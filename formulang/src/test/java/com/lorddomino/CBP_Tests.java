@@ -22,12 +22,12 @@ public class CBP_Tests {
     afl1.add(IpaRegistryAssembler.VOICED_VELAR_PLOSIVE);
     ComponentBlueprint cbp1 = new ComponentBlueprint(afl1);
 
-    System.out.println(cbp1.isCompliantToBlueprint(
-      new Syllable(
-        IpaRegistryAssembler.VOICED_ALVEOLAR_FLAP,
-        IpaRegistryAssembler.CLOSEMID_BACK_ROUNDED,
-        IpaRegistryAssembler.VOICED_VELAR_PLOSIVE
-      ).getDefaultBlueprint()
-    ));
+    Syllable syl = new Syllable(
+      IpaRegistryAssembler.VOICED_ALVEOLAR_FLAP,
+      IpaRegistryAssembler.CLOSEMID_BACK_ROUNDED,
+      IpaRegistryAssembler.VOICED_VELAR_PLOSIVE
+    );
+
+    syl.getRawStructure();
   }
 }

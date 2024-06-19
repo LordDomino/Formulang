@@ -15,6 +15,10 @@ public class Syllable extends Structure {
     super(comps);
   }
 
+  public Syllable(ArrayList<AbstractComponent> comps) {
+    super(comps);
+  }
+
   @Override
   public ArrayList<AbstractFormulangReference> defineDefaultBlueprintElements() {
     ArrayList<AbstractFormulangReference> e = new ArrayList<>();
@@ -24,5 +28,9 @@ public class Syllable extends Structure {
     return e;
   }
 
+  @Override
+  public Structure getRawStructure() {
+    return new Syllable(new ArrayList<>(getPhonemes()));
+  }
 
 }

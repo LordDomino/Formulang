@@ -6,6 +6,7 @@ import java.util.Arrays;
 import com.lorddomino.fle.blueprints.AbstractFormulangReference;
 import com.lorddomino.fle.blueprints.ComponentBlueprint;
 import com.lorddomino.fle.blueprints.elements.InstanceElement;
+import com.lorddomino.fle.phonology.Phoneme;
 
 public abstract class Structure extends TranscriptableComponent {
 
@@ -88,9 +89,32 @@ public abstract class Structure extends TranscriptableComponent {
     return "TO DO";
   }
 
+  /**
+   * Returns the components of this structure.
+   * @return the arraylist of this structure's components
+   */
   public ArrayList<AbstractComponent> getComponents() {
     return this.components;
   }
+
+  public ArrayList<Phoneme> getPhonemes() {
+    ArrayList<Phoneme> rl = new ArrayList<>();
+    for (AbstractComponent comp : components) {
+      if (comp instanceof Phoneme) {
+        rl.add((Phoneme) comp);
+      } else if (comp instanceof Structure ) {
+        rl.addAll(((Structure) comp).getPhonemes());
+      }
+    }
+    return rl;
+  }
+
+  /**
+   * Returns the version of this object without the hierarchal preservation in
+   * its structure.
+   * @return a structure object with no nested substructures
+   */
+  public abstract Structure getRawStructure();
 
   @Override
   public boolean isCompliantToBlueprint(ComponentBlueprint bp) {
