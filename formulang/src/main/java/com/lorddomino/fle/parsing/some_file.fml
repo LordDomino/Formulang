@@ -1,0 +1,18 @@
+gamma SomeObject : {/12/};
+
+lang MyLanguage {
+  blueprints {
+    gamma Syllable : {gamma Onset + gamma Nucleus + gamma Coda + /\u028b/};
+    gamma Onset : {...<C>};
+    gamma Nucleus : {...<V>};
+    gamma Coda : {...<C>};
+  }
+
+  main {
+    new syllable1 using gamma MyLanguage.Syllable = {  // This is some comment
+      {/t/ + /r/} + {/a/} + {/t/} -> {/h/}
+    };
+
+    print MyLanguage.main.syllable1;
+  }
+}

@@ -127,7 +127,6 @@ public class ComponentBlueprint extends AbstractFormulangReference {
       if (!elements.get(i).isCompliant(bp.elements.get(i))) {
         return false;
       }
-      return true;
     }
     return false;
   }
