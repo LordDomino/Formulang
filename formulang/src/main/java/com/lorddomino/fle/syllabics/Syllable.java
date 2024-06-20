@@ -4,12 +4,10 @@ import java.util.ArrayList;
 
 import com.lorddomino.fle.blueprints.AbstractFormulangReference;
 import com.lorddomino.fle.blueprints.elements.ClassElement;
-import com.lorddomino.fle.phonology.ConsonantPhone;
-import com.lorddomino.fle.phonology.VowelPhone;
 import com.lorddomino.fle.types.AbstractComponent;
-import com.lorddomino.fle.types.Structure;
+import com.lorddomino.fle.types.AbstractStructure;
 
-public class Syllable extends Structure {
+public abstract class Syllable extends AbstractStructure {
 
   public Syllable(AbstractComponent ... comps) {
     super(comps);
@@ -22,15 +20,8 @@ public class Syllable extends Structure {
   @Override
   public ArrayList<AbstractFormulangReference> defineDefaultBlueprintElements() {
     ArrayList<AbstractFormulangReference> e = new ArrayList<>();
-    e.add(new ClassElement(ConsonantPhone.class));
-    e.add(new ClassElement(VowelPhone.class));
-    e.add(new ClassElement(ConsonantPhone.class));
+    e.add(new ClassElement(Syllable.class));
     return e;
-  }
-
-  @Override
-  public Structure getRawStructure() {
-    return new Syllable(new ArrayList<>(getPhonemes()));
   }
 
 }

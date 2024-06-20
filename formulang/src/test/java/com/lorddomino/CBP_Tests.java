@@ -1,12 +1,13 @@
 package com.lorddomino;
 
-import java.util.ArrayList;
-
 import org.junit.jupiter.api.Test;
 
-import com.lorddomino.fle.blueprints.AbstractFormulangReference;
-import com.lorddomino.fle.blueprints.ComponentBlueprint;
+import com.lorddomino.fle.phonology.Phoneme;
 import com.lorddomino.fle.ipa.IpaRegistryAssembler;
+import com.lorddomino.fle.syllabics.Coda;
+import com.lorddomino.fle.syllabics.Nucleus;
+import com.lorddomino.fle.syllabics.ONCSyllable;
+import com.lorddomino.fle.syllabics.Onset;
 import com.lorddomino.fle.syllabics.Syllable;
 
 public class CBP_Tests {
@@ -16,18 +17,11 @@ public class CBP_Tests {
    */
   @Test
   void Test1InstanceElements() {
-    ArrayList<AbstractFormulangReference> afl1 = new ArrayList<>();
-    afl1.add(IpaRegistryAssembler.VOICED_VELAR_PLOSIVE);
-    afl1.add(IpaRegistryAssembler.CLOSEMID_BACK_ROUNDED);
-    afl1.add(IpaRegistryAssembler.VOICED_VELAR_PLOSIVE);
-    ComponentBlueprint cbp1 = new ComponentBlueprint(afl1);
+    Phoneme ph1 = new Phoneme(IpaRegistryAssembler.VOICED_ALVEOLAR_FLAP, "a");
+    Phoneme ph2 = new Phoneme(IpaRegistryAssembler.CLOSEMID_BACK_ROUNDED, "b");
+    Phoneme ph3 = new Phoneme(IpaRegistryAssembler.VOICED_VELAR_PLOSIVE, "c");
+    Syllable syl = new ONCSyllable(new Onset(ph1), new Nucleus(ph2), new Coda(ph3));
 
-    Syllable syl = new Syllable(
-      IpaRegistryAssembler.VOICED_ALVEOLAR_FLAP,
-      IpaRegistryAssembler.CLOSEMID_BACK_ROUNDED,
-      IpaRegistryAssembler.VOICED_VELAR_PLOSIVE
-    );
-
-    syl.getRawStructure();
+    System.out.println(syl);
   }
 }
