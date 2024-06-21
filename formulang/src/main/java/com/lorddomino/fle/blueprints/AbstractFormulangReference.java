@@ -33,7 +33,6 @@ public abstract class AbstractFormulangReference implements FlePreviewable {
    */
   public AbstractFormulangReference() {}
 
-
   @Override
   public String toString() {
     return getFlePreview();

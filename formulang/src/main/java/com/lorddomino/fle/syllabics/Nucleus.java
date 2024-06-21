@@ -1,31 +1,33 @@
-package com.lorddomino.fle.types;
+package com.lorddomino.fle.syllabics;
 
 import java.util.ArrayList;
 
 import com.lorddomino.fle.blueprints.AbstractFormulangReference;
 import com.lorddomino.fle.blueprints.elements.ClassElement;
 import com.lorddomino.fle.phonology.Phoneme;
+import com.lorddomino.fle.types.AbstractStructure;
+import com.lorddomino.fle.types.Structure;
 
-public final class Structure extends AbstractStructure {
+public class Nucleus extends AbstractStructure {
 
-  public Structure(Phoneme ... phonemes) {
-    super(phonemes);
+  public Nucleus(Phoneme ... ph) {
+    super(ph);
   }
 
-  public Structure(ArrayList<Phoneme> phonemes) {
-    super(new ArrayList<>(phonemes));
+  public Nucleus(ArrayList<Phoneme> ph) {
+    super(new ArrayList<>(ph));
   }
 
   @Override
   public ArrayList<AbstractFormulangReference> defineDefaultBlueprintElements() {
     ArrayList<AbstractFormulangReference> e = new ArrayList<>();
-    e.add(new ClassElement(Structure.class));
+    e.add(new ClassElement(Nucleus.class));
     return e;
   }
 
   @Override
   public AbstractStructure getRawStructure() {
-    return this;
+    return new Structure(getPhonemes());
   }
 
 }

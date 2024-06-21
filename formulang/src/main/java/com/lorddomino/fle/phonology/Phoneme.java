@@ -102,7 +102,7 @@ public class Phoneme extends TranscriptableComponent {
 
   @Override
   public ComponentBlueprint processBlueprint(ComponentBlueprint bp) {
-    return new ComponentBlueprint(new InstanceElement(this.baseAllophone));
+    return new ComponentBlueprint(new InstanceElement(this));
   }
 
   public HashSet<Phone> getAllophones() {
