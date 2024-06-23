@@ -2,7 +2,7 @@ package com.lorddomino.fle.types;
 
 import java.util.ArrayList;
 
-import com.lorddomino.fle.blueprints.AbstractFormulangReference;
+import com.lorddomino.fle.AbstractFLEObject;
 import com.lorddomino.fle.blueprints.ComponentBlueprint;
 
 public class DummyComponent extends AbstractComponent {
@@ -12,7 +12,7 @@ public class DummyComponent extends AbstractComponent {
   }
 
   @Override
-  public ArrayList<AbstractFormulangReference> defineDefaultBlueprintElements() {
+  public ArrayList<AbstractFLEObject> defineDefaultBlueprintElements() {
     return null;
   }
 

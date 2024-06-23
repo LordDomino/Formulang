@@ -3,7 +3,7 @@ package com.lorddomino.fle.phonology;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-import com.lorddomino.fle.blueprints.AbstractFormulangReference;
+import com.lorddomino.fle.AbstractFLEObject;
 import com.lorddomino.fle.blueprints.ComponentBlueprint;
 import com.lorddomino.fle.blueprints.elements.ClassElement;
 import com.lorddomino.fle.blueprints.elements.InstanceElement;
@@ -26,21 +26,21 @@ public class Phoneme extends TranscriptableComponent {
     IPA_DEFAULTS.remove(pm);
   }
 
-  private Phone baseAllophone;
+  private Allophone baseAllophone;
   private String baseSymbol;
   private HashSet<Phone> allophones = new HashSet<>();
 
   public Phoneme(Phone baseAllophone, String romanization) {
     super(baseAllophone.getOutputStr(), null, null);
-    this.baseAllophone = baseAllophone;
+    this.baseAllophone = new Allophone(baseAllophone);
     this.baseSymbol = baseAllophone.getSymbol();
     this.allophones.add(baseAllophone);
     processProperties();
   }
 
   @Override
-  public ArrayList<AbstractFormulangReference> defineDefaultBlueprintElements() {
-    ArrayList<AbstractFormulangReference> e = new ArrayList<>();
+  public ArrayList<AbstractFLEObject> defineDefaultBlueprintElements() {
+    ArrayList<AbstractFLEObject> e = new ArrayList<>();
     e.add(new ClassElement(Phoneme.class));
     return e;
   }
@@ -102,7 +102,7 @@ public class Phoneme extends TranscriptableComponent {
 
   @Override
   public ComponentBlueprint processBlueprint(ComponentBlueprint bp) {
-    return new ComponentBlueprint(new InstanceElement(this.baseAllophone));
+    return new ComponentBlueprint(new InstanceElement(this));
   }
 
   public HashSet<Phone> getAllophones() {
@@ -110,7 +110,7 @@ public class Phoneme extends TranscriptableComponent {
   }
 
   public Phone getBaseAllophone() {
-    return baseAllophone;
+    return baseAllophone.getPhone();
   }
 
   public String getBaseSymbol() {

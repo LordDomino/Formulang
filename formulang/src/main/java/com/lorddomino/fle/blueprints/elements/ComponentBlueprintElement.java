@@ -1,9 +1,16 @@
 package com.lorddomino.fle.blueprints.elements;
 
-import com.lorddomino.fle.blueprints.AbstractFormulangReference;
+import com.lorddomino.fle.AbstractFLEObject;
 import com.lorddomino.fle.blueprints.ComponentBlueprint;
 
-public abstract class ComponentBlueprintElement<T> extends AbstractFormulangReference {
+/**
+ * A blueprint element object is a reference representing either an instance,
+ * the class, or both an instance and the class of the component object it
+ * points to. Thus, it is called a blueprint element because it complements a
+ * component object and serves as a descriptor to the component object’s
+ * internal hierarchy.
+ */
+public abstract class ComponentBlueprintElement<T> extends AbstractFLEObject {
 
   private T defaultReference;
 
@@ -61,8 +68,8 @@ public abstract class ComponentBlueprintElement<T> extends AbstractFormulangRefe
 
       // tRef is an instance, so it can be checked for compatibility with whatever
       // rRef is.
-      if (tRef instanceof AbstractFormulangReference) {
-        return (((AbstractFormulangReference) tRef).isCompliant(rRef));
+      if (tRef instanceof AbstractFLEObject) {
+        return (((AbstractFLEObject) tRef).isCompliant(rRef));
       }
 
       // But if tRef is a class, it can only be checked for compatibility if
