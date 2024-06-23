@@ -80,6 +80,13 @@ public class Parser {
     this.currentToken = null;
   }
 
+  /**
+   * Convenience method that returns the arraylist of the given varargs. This is
+   * used in the initialization of {@code TreeNode} objects.
+   * @param subnodes the {@code AbstractTreeNode} objects to assemble as an
+   * arraylist
+   * @return arraylist of {@code AbstractTreeNode} varargs
+   */
   private ArrayList<AbstractTreeNode> assembleNodes(AbstractTreeNode ... subnodes) {
     return new ArrayList<>(Arrays.asList(subnodes));
   }
@@ -94,7 +101,7 @@ public class Parser {
   /**
    * Parses the program through the production rule:
    * {@code <Program> -> <Statement>}
-   * @return the program node tree
+   * @return the corresponding {@code ProgramNode}
    * @throws ParseErrorException
    */
   private ProgramNode parseProgram() throws ParseErrorException {
@@ -106,17 +113,23 @@ public class Parser {
   /**
    * Parses a statement from the production rule:
    * {@code <Statement> -> <Blueprint-declaration> <Delimiter>}
-   * @return
+   * @return the corresponding {@code StatementNode}
    * @throws ParseErrorException
    */
   private StatementNode parseStatement() throws ParseErrorException {
     AbstractTreeNode bpDeclaration = parseBpDeclaration();
-    PunctuationNode semicolon = new PunctuationNode(parseSymbolFromType(TokenDefinitions.DELIMITER));
+    PunctuationNode semicolon = parseDelimiter();
 
     StatementNode statement = new StatementNode(assembleNodes(bpDeclaration, semicolon));
     return statement;
   }
 
+  /**
+   * Parses a blueprint declaration through the production rule:
+   * {@code <Blueprint-declaration> -> <Blueprint-id> : <Structure>}
+   * @return the corresponding {@code BlueprintDeclarationNode}
+   * @throws ParseErrorException
+   */
   private BlueprintDeclarationNode parseBpDeclaration() throws ParseErrorException {
     AbstractTreeNode bpId = parseBpId();
     OperatorNode colon = new OperatorNode(parseSymbolFromType(TokenDefinitions.BLUEPRINT_ASSIGNER));
@@ -126,6 +139,12 @@ public class Parser {
     return bpDecl;
   }
 
+  /**
+   * Parses a blueprint identifier through the production rule:
+   * {@code <Blueprint-id> -> gamma <Id>}
+   * @return the corresponding {@code BlueprintIdNode}
+   * @throws ParseErrorException
+   */
   private BlueprintIdNode parseBpId() throws ParseErrorException {
     KeywordNode gamma = new KeywordNode(parseSymbolFromType(TokenDefinitions.GAMMA_KEYWORD));
     AbstractTreeNode id = parseId();
@@ -134,10 +153,22 @@ public class Parser {
     return bpId;
   }
 
+  /**
+   * Parses an identifier through the production rule:
+   * {@code <Id> -> <Literal>}
+   * @return the corresponding {@code IdNode}
+   * @throws ParseErrorException
+   */
   private IdNode parseId() throws ParseErrorException {
     return new IdNode(parseLiteral());
   }
 
+  /**
+   * Parses a structure through the production rule:
+   * {@code <Structure> -> &#123; <Components> &#125;}
+   * @return
+   * @throws ParseErrorException
+   */
   private AbstractTreeNode parseStructure() throws ParseErrorException {
     PunctuationNode openBrace = new PunctuationNode(parseSymbolFromType(TokenDefinitions.BRACE_OPEN));
     AbstractTreeNode components = parseComponents();
@@ -147,6 +178,12 @@ public class Parser {
     return strc;
   }
 
+  /**
+   * Parses a component array through the production rule:
+   * {@code <Components> -> <Component> <Component*>}
+   * @return the corresponding {@code ComponentsNode}
+   * @throws ParseErrorException
+   */
   private ComponentsNode parseComponents() throws ParseErrorException {
     ComponentNode component = parseComponent();
 
