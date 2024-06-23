@@ -2,6 +2,8 @@ package com.lorddomino.fle.blueprints;
 
 import java.util.ArrayList;
 
+import com.lorddomino.fle.AbstractFLEObject;
+
 /**
  * Interface that provides helper methods essential in the default
  * initialization of component blueprints in many Formulang object types. Two
@@ -24,7 +26,7 @@ public interface DefaultBlueprintConstructor {
    * @return the constructed component blueprint
    */
   default ComponentBlueprint constructDefaultBlueprint() {
-    ArrayList<AbstractFormulangReference> elements = defineDefaultBlueprintElements();
+    ArrayList<AbstractFLEObject> elements = defineDefaultBlueprintElements();
     if (elements.size() == 1) {
       return new ComponentBlueprint(elements.get(0));
     } else {
@@ -36,5 +38,5 @@ public interface DefaultBlueprintConstructor {
    * Returns an ArrayList of default blueprint elements defined in this object.
    * @return ArrayList of default blueprint elements
    */
-  public abstract ArrayList<AbstractFormulangReference> defineDefaultBlueprintElements();
+  public abstract ArrayList<AbstractFLEObject> defineDefaultBlueprintElements();
 }

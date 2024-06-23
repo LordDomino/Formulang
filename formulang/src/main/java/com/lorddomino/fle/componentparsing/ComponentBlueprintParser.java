@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.lorddomino.fle.blueprints.ComponentBlueprint;
 import com.lorddomino.fle.exceptions.CbpUnparsableException;
+import com.lorddomino.fle.syllabics.ONCSyllable;
 import com.lorddomino.fle.syllabics.Syllable;
 import com.lorddomino.fle.types.AbstractComponent;
 
@@ -79,7 +80,7 @@ public class ComponentBlueprintParser {
   }
 
   private Syllable parseSyllable() {
-    return new Syllable();
+    return new ONCSyllable(null, null, null);
   }
 
 }

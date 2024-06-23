@@ -2,18 +2,20 @@ package com.lorddomino.fle.blueprints;
 
 import java.util.ArrayList;
 
-public class ComponentBlueprint extends AbstractFormulangReference {
+import com.lorddomino.fle.AbstractFLEObject;
 
-  private ArrayList<AbstractFormulangReference> elements;
+public class ComponentBlueprint extends AbstractFLEObject {
+
+  private ArrayList<AbstractFLEObject> elements;
 
   /**
    * Creates a {@code ComponentBlueprint} object containing exactly one element
    * reference as its recognized sub-components.
    * @param element the element reference
    */
-  public ComponentBlueprint(AbstractFormulangReference element) {
+  public ComponentBlueprint(AbstractFLEObject element) {
     super();
-    final ArrayList<AbstractFormulangReference> al = new ArrayList<>();
+    final ArrayList<AbstractFLEObject> al = new ArrayList<>();
     al.add(element);
     this.elements = al;
   }
@@ -23,7 +25,7 @@ public class ComponentBlueprint extends AbstractFormulangReference {
    * ArrayList of elements as its recognized sub-components.
    * @param elements the array list of elements
    */
-  public ComponentBlueprint(ArrayList<AbstractFormulangReference> elements) {
+  public ComponentBlueprint(ArrayList<AbstractFLEObject> elements) {
     super();
     this.elements = elements;
   }
@@ -44,8 +46,8 @@ public class ComponentBlueprint extends AbstractFormulangReference {
       if (this.size() != object.size()) {
         return false;
       } else {
-        ArrayList<AbstractFormulangReference> curList = this.getElements();
-        ArrayList<AbstractFormulangReference> objList = object.getElements();
+        ArrayList<AbstractFLEObject> curList = this.getElements();
+        ArrayList<AbstractFLEObject> objList = object.getElements();
         for (int i = 0; i < this.size(); i++) {
           if (!curList.get(i).equals(objList.get(i))) {
             return false;
@@ -61,7 +63,7 @@ public class ComponentBlueprint extends AbstractFormulangReference {
    * Returns the elements of this component blueprint.
    * @return the elements of this component blueprint.
    */
-  public ArrayList<AbstractFormulangReference> getElements() {
+  public ArrayList<AbstractFLEObject> getElements() {
     return elements;
   }
 
@@ -74,8 +76,8 @@ public class ComponentBlueprint extends AbstractFormulangReference {
    * Returns the element at given index {@code index}.
    * @param index the index of the element
    */
-  public AbstractFormulangReference get(int index) throws IndexOutOfBoundsException {
-    AbstractFormulangReference obj;
+  public AbstractFLEObject get(int index) throws IndexOutOfBoundsException {
+    AbstractFLEObject obj;
     try {
       obj = getElements().get(index);
     } catch (IndexOutOfBoundsException e) {
@@ -87,14 +89,14 @@ public class ComponentBlueprint extends AbstractFormulangReference {
   /**
    * Returns the first element of this component blueprint.
    */
-  public AbstractFormulangReference getFirst() {
+  public AbstractFLEObject getFirst() {
     return getElements().get(0);
   }
 
   /**
    * Returns the last element of this component blueprint.
    */
-  public AbstractFormulangReference getLast() {
+  public AbstractFLEObject getLast() {
     return getElements().get(size()-1);
   }
 

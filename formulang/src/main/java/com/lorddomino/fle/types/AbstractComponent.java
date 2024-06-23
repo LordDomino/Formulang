@@ -2,12 +2,12 @@ package com.lorddomino.fle.types;
 
 import java.util.Objects;
 
-import com.lorddomino.fle.blueprints.AbstractFormulangReference;
+import com.lorddomino.fle.AbstractFLEObject;
 import com.lorddomino.fle.blueprints.ComponentBlueprint;
 import com.lorddomino.fle.blueprints.DefaultBlueprintConstructor;
 import com.lorddomino.fle.exceptions.IncompliantException;
 
-public abstract class AbstractComponent extends AbstractFormulangReference
+public abstract class AbstractComponent extends AbstractFLEObject
     implements DefaultBlueprintConstructor {
 
   /**

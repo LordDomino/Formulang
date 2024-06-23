@@ -3,7 +3,7 @@ package com.lorddomino.fle.types;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import com.lorddomino.fle.blueprints.AbstractFormulangReference;
+import com.lorddomino.fle.AbstractFLEObject;
 import com.lorddomino.fle.blueprints.ComponentBlueprint;
 import com.lorddomino.fle.blueprints.elements.InstanceElement;
 import com.lorddomino.fle.phonology.Phoneme;
@@ -43,7 +43,7 @@ public abstract class AbstractStructure extends TranscriptableComponent {
     if (getComponents().size() == 0) {
       return getDefaultBlueprint();
     }
-    ArrayList<AbstractFormulangReference> ae = new ArrayList<>();
+    ArrayList<AbstractFLEObject> ae = new ArrayList<>();
     for (AbstractComponent absComp : getComponents()) {
       ae.add(new InstanceElement(absComp));
     }
@@ -127,7 +127,7 @@ public abstract class AbstractStructure extends TranscriptableComponent {
     }
     for (int i = 0; i < getComponents().size(); i++) {
       AbstractComponent comp = getComponents().get(i);
-      AbstractFormulangReference sbp = bp.getElements().get(i);
+      AbstractFLEObject sbp = bp.getElements().get(i);
       if (!comp.isCompliant(sbp)) {
         return false;
       }

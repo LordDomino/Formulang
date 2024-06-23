@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Objects;
 
-import com.lorddomino.fle.blueprints.AbstractFormulangReference;
+import com.lorddomino.fle.AbstractFLEObject;
 import com.lorddomino.fle.blueprints.ComponentBlueprint;
 import com.lorddomino.fle.blueprints.elements.ClassElement;
 import com.lorddomino.fle.blueprints.elements.InstanceElement;
@@ -156,8 +156,8 @@ public abstract class Phone extends TranscriptableComponent {
   }
 
   @Override
-  public ArrayList<AbstractFormulangReference> defineDefaultBlueprintElements() {
-    ArrayList<AbstractFormulangReference> e = new ArrayList<>();
+  public ArrayList<AbstractFLEObject> defineDefaultBlueprintElements() {
+    ArrayList<AbstractFLEObject> e = new ArrayList<>();
     e.add(new ClassElement(Phone.class));
     return e;
   }
