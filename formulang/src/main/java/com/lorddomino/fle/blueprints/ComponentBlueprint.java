@@ -4,13 +4,21 @@ import java.util.ArrayList;
 
 import com.lorddomino.fle.AbstractFLEObject;
 
+/**
+ * The class for all {@code ComponentBlueprint} objects.
+ * <p>
+ * A {@code ComponentBlueprint} is an object that stores an array of
+ * references to other FLE objects. This array is used to define the internal
+ * structure of an {@code AbstractComponent} that uses it.
+ */
 public class ComponentBlueprint extends AbstractFLEObject {
 
   private ArrayList<AbstractFLEObject> elements;
 
   /**
    * Creates a {@code ComponentBlueprint} object containing exactly one element
-   * reference as its recognized sub-components.
+   * reference. When created, this component blueprint is guaranteed to be a
+   * <b>singleton</b> because it contains exactly a single FLE object reference.
    * @param element the element reference
    */
   public ComponentBlueprint(AbstractFLEObject element) {
@@ -101,7 +109,7 @@ public class ComponentBlueprint extends AbstractFLEObject {
   }
 
   /**
-   * Returns the number of elements this component blueprint has.
+   * Returns the number of elements of this component blueprint.
    */
   public int size() {
     return getElements().size();
@@ -114,7 +122,11 @@ public class ComponentBlueprint extends AbstractFLEObject {
    */
   public boolean isSingletonBlueprint() {
     if (elements.size() == 1) {
-      return true;
+      if (elements.get(0) instanceof ComponentBlueprint) {
+        return ((ComponentBlueprint) elements.get(0)).isSingletonBlueprint();
+      } else {
+        return true;
+      }
     } else {
       return false;
     }

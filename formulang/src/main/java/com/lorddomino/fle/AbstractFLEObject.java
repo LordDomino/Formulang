@@ -1,7 +1,6 @@
 package com.lorddomino.fle;
 
 import com.lorddomino.fle.blueprints.ComponentBlueprint;
-import com.lorddomino.fle.blueprints.FlePreviewable;
 import com.lorddomino.fle.blueprints.elements.ComponentBlueprintElement;
 
 /**
