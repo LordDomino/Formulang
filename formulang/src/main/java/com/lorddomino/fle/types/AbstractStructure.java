@@ -53,10 +53,11 @@ public abstract class AbstractStructure extends TranscriptableComponent {
   @Override
   public String processFormulangTranscript(String formulangTranscript) {
     String fmlTrns = "";
+    ArrayList<String> comps = new ArrayList<>();
     for (AbstractComponent comp : getComponents()) {
-      fmlTrns = fmlTrns + comp.getFormulangTranscript() + ".";
+      comps.add(comp.getFormulangTranscript());
     }
-    fmlTrns = fmlTrns.substring(0, fmlTrns.length() - 1);
+    fmlTrns = String.join(" + ", comps);
     return "{" + fmlTrns + "}";
   }
 

@@ -12,7 +12,6 @@ public class Allophone extends TranscriptableComponent {
   private Phone phone;
 
   public Allophone(Phone ph) {
-    super(ph.getBlueprint());
     this.phone = ph;
   }
 
@@ -33,7 +32,7 @@ public class Allophone extends TranscriptableComponent {
 
   @Override
   public String processFormulangTranscript(String fmlTrns) {
-    return "";
+    return phone.getFormulangTranscript();
   }
 
   @Override
