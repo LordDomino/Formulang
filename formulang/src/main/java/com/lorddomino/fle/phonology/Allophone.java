@@ -68,7 +68,7 @@ public class Allophone extends TranscriptableComponent {
 
   @Override
   public String getFlePreview() {
-    return "<Allophone " + this.getIpaTranscript() + ">";
+    return "<" + this.getClass().getSimpleName() + this.getIpaTranscript() + ">";
   }
 
   public Phone getPhone() {
